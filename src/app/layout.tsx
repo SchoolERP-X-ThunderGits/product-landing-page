@@ -1,10 +1,10 @@
 import '@/assets/styles/app.css'
 
 export const metadata = {
-  title: 'EduSmart | Smart School ERP',
-  description: 'EduSmart - The ultimate school management solution.',
+  title: 'SMS Pro | Bulk Messaging Made Simple',
+  description: 'SMS Pro - Send bulk messages with ease, speed, and precision.',
   icons: {
-    icon: '/favicon.png', // Place favicon.ico in the /public folder
+    icon: '/smspro-favicon.png', // Make sure this file is placed in the /public folder
   },
 }
 
