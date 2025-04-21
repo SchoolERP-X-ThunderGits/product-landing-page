@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { IoMenuSharp } from "react-icons/io5";
+import InquiryForm from "@/components/InquiryForm";
 function page() {
     const [activeSection, setActiveSection] = useState(""); // Track the active section
     const [showModal, setShowModal] = useState(false);
@@ -743,6 +744,7 @@ function page() {
                     </a>
                 </div>
             </section>
+            <InquiryForm/>
 
             {/* Footer */}
             <footer className="common bg-gray-50 text-center py-6 text-sm text-gray-500 border-t border-gray-200">
