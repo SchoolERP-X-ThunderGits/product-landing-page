@@ -1,52 +1,52 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { IoMenuSharp } from "react-icons/io5";
+'use client'
+import React, { useEffect, useState } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { IoMenuSharp } from 'react-icons/io5'
 function page() {
-    const [activeSection, setActiveSection] = useState(""); // Track the active section
-    const [showModal, setShowModal] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('') // Track the active section
+    const [showModal, setShowModal] = useState(false)
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     const navLinks = [
-        { label: "Features", id: "features" },
-        { label: "Demo", id: "demo" },
-        { label: "Pricing", id: "pricing" },
-        { label: "FAQ", id: "faq" },
-        { label: "Contact", id: "contact" },
-    ];
+        { label: 'Features', id: 'features' },
+        { label: 'Demo', id: 'demo' },
+        { label: 'Pricing', id: 'pricing' },
+        { label: 'FAQ', id: 'faq' },
+        { label: 'Contact', id: 'contact' },
+    ]
     // Initialize AOS for animations
     useEffect(() => {
         if (mobileMenuOpen) {
-            document.body.classList.add("overflow-hidden");
+            document.body.classList.add('overflow-hidden')
         } else {
-            document.body.classList.remove("overflow-hidden");
+            document.body.classList.remove('overflow-hidden')
         }
-    }, [mobileMenuOpen]);
+    }, [mobileMenuOpen])
 
     useEffect(() => {
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 1000, once: true })
 
         // Intersection Observer to track which section is currently in view
-        const sections = document.querySelectorAll("section");
+        const sections = document.querySelectorAll('section')
         const options = {
             root: null,
-            rootMargin: "0px",
+            rootMargin: '0px',
             threshold: 0.5, // Trigger when 50% of the section is in view
-        };
+        }
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    setActiveSection(entry.target.id); // Set active section based on intersection
+                    setActiveSection(entry.target.id) // Set active section based on intersection
                 }
-            });
-        }, options);
-        sections.forEach((section) => observer.observe(section));
+            })
+        }, options)
+        sections.forEach((section) => observer.observe(section))
 
         // Cleanup observer on component unmount
-        return () => observer.disconnect();
-    }, []);
+        return () => observer.disconnect()
+    }, [])
 
     return (
         <div className="common font-sans text-gray-800 bg-white">
@@ -63,18 +63,19 @@ function page() {
                         {navLinks.map((link) => (
                             <li key={link.id} className="common relative group">
                                 <a
-
                                     href={`#${link.id}`}
-                                    className={`px-2 py-1 transition-colors duration-300 ${activeSection === link.id
-                                        ? "text-indigo-600 font-semibold"
-                                        : "text-gray-800"
-                                        } hover:text-indigo-600`}
+                                    className={`px-2 py-1 transition-colors duration-300 ${
+                                        activeSection === link.id
+                                            ? 'text-indigo-600 font-semibold'
+                                            : 'text-gray-800'
+                                    } hover:text-indigo-600`}
                                 >
                                     {link.label}
                                 </a>
                                 <span
-                                    className={`absolute left-1/2 -bottom-1.5 w-0 h-[2px] bg-indigo-500 rounded-full group-hover:w-3/5 transition-all duration-300 transform -translate-x-1/2 ${activeSection === link.id ? "w-3/5" : ""
-                                        }`}
+                                    className={`absolute left-1/2 -bottom-1.5 w-0 h-[2px] bg-indigo-500 rounded-full group-hover:w-3/5 transition-all duration-300 transform -translate-x-1/2 ${
+                                        activeSection === link.id ? 'w-3/5' : ''
+                                    }`}
                                 ></span>
                             </li>
                         ))}
@@ -116,7 +117,9 @@ function page() {
                                     <li key={link.id}>
                                         <a
                                             href={`#${link.id}`}
-                                            onClick={() => setMobileMenuOpen(false)}
+                                            onClick={() =>
+                                                setMobileMenuOpen(false)
+                                            }
                                             className="common block text-gray-800 hover:text-indigo-600 font-medium text-lg transition"
                                         >
                                             {link.label}
@@ -127,7 +130,6 @@ function page() {
                             <div className="common flex flex-col items-center space-y-3 px-6 pb-6">
                                 <a
                                     href="#demo"
-
                                     onClick={() => setMobileMenuOpen(false)}
                                     className="common bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold shadow-md text-center"
                                 >
@@ -135,10 +137,9 @@ function page() {
                                 </a>
                                 <button
                                     onClick={() => {
-                                        setMobileMenuOpen(false);
-                                        setShowModal(true);
+                                        setMobileMenuOpen(false)
+                                        setShowModal(true)
                                     }}
-
                                     className="common bg-white text-indigo-600 border border-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-indigo-50 transition"
                                 >
                                     🔐 Login
@@ -146,10 +147,8 @@ function page() {
                             </div>
                         </div>
                     )}
-
                 </nav>
             </header>
-
 
             {/* Hero */}
             <section
@@ -161,7 +160,8 @@ function page() {
                 <div
                     className="common absolute inset-0 bg-cover bg-center"
                     style={{
-                        backgroundImage: "url('https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1600&q=80')",
+                        backgroundImage:
+                            "url('https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1600&q=80')",
                     }}
                 ></div>
 
@@ -170,14 +170,24 @@ function page() {
 
                 {/* Glassmorphic Content Container */}
                 <div className="common relative z-10 backdrop-blur-sm bg-white/10 rounded-3xl p-10 sm:p-16 max-w-3xl text-center shadow-2xl border border-white/20">
-                    <h2 style={{ color: 'white', fontFamily: 'Outfit, sans-serif' }} className="common text-4xl sm:text-5xl font-extrabold leading-tight drop-shadow-md">
+                    <h2
+                        style={{
+                            color: 'white',
+                            fontFamily: 'Outfit, sans-serif',
+                        }}
+                        className="common text-4xl sm:text-5xl font-extrabold leading-tight drop-shadow-md"
+                    >
                         All-in-One School ERP Platform
                     </h2>
                     <p className="common mt-6 text-lg sm:text-xl text-indigo-100 drop-shadow-sm">
-                        Simplify school management — from admissions to attendance to exams — with <span className="common font-semibold text-white">EduSmart ERP</span>.
+                        Simplify school management — from admissions to
+                        attendance to exams — with{' '}
+                        <span className="common font-semibold text-white">
+                            EduSmart ERP
+                        </span>
+                        .
                     </p>
                     <a
-
                         href="#demo"
                         className="common mt-10 inline-block bg-indigo-600 text-white px-8 py-4 rounded-full shadow-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl"
                     >
@@ -185,7 +195,6 @@ function page() {
                     </a>
                 </div>
             </section>
-
 
             {/* Problem & Solution */}
             <section
@@ -203,51 +212,66 @@ function page() {
                         Challenges & Solutions
                     </h2>
                     <p className="common text-lg text-gray-600 font-medium">
-                        Real issues. Smart fixes. Let’s transform education together.
+                        Real issues. Smart fixes. Let’s transform education
+                        together.
                     </p>
                 </div>
 
                 {/* Cards */}
                 <div className="common relative z-10 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-
                     {/* Problem Card */}
-                    <div className="common group bg-white/60 backdrop-blur-xl backdrop-saturate-150 rounded-[2rem] p-10 
+                    <div
+                        className="common group bg-white/60 backdrop-blur-xl backdrop-saturate-150 rounded-[2rem] p-10 
         border border-white/30 shadow-[0_30px_80px_rgba(0,0,0,0.08)] 
-        transition-all duration-300 hover:scale-[1.015] hover:shadow-[0_40px_90px_rgba(0,0,0,0.12)]">
-
+        transition-all duration-300 hover:scale-[1.015] hover:shadow-[0_40px_90px_rgba(0,0,0,0.12)]"
+                    >
                         <div className="common flex items-center gap-4 mb-6">
-                            <div className="common w-16 h-16 flex items-center justify-center 
+                            <div
+                                className="common w-16 h-16 flex items-center justify-center 
           bg-gradient-to-br from-red-100 to-white shadow-inner rounded-2xl 
-          text-red-500 text-3xl transform transition duration-300 group-hover:scale-110 group-hover:rotate-6">
+          text-red-500 text-3xl transform transition duration-300 group-hover:scale-110 group-hover:rotate-6"
+                            >
                                 ❌
                             </div>
-                            <h3 className="common text-3xl font-bold text-red-500">The Problem</h3>
+                            <h3 className="common text-3xl font-bold text-red-500">
+                                The Problem
+                            </h3>
                         </div>
                         <p className="common text-gray-700 text-lg leading-relaxed font-medium">
-                            Manual operations, fragmented data, and communication gaps cause delays and errors in school administration.
+                            Manual operations, fragmented data, and
+                            communication gaps cause delays and errors in school
+                            administration.
                         </p>
                     </div>
 
                     {/* Solution Card */}
-                    <div className="common group bg-white/60 backdrop-blur-xl backdrop-saturate-150 rounded-[2rem] p-10 
+                    <div
+                        className="common group bg-white/60 backdrop-blur-xl backdrop-saturate-150 rounded-[2rem] p-10 
         border border-white/30 shadow-[0_30px_80px_rgba(0,0,0,0.08)] 
-        transition-all duration-300 hover:scale-[1.015] hover:shadow-[0_40px_90px_rgba(0,0,0,0.12)]">
-
+        transition-all duration-300 hover:scale-[1.015] hover:shadow-[0_40px_90px_rgba(0,0,0,0.12)]"
+                    >
                         <div className="common flex items-center gap-4 mb-6">
-                            <div className="common w-16 h-16 flex items-center justify-center 
+                            <div
+                                className="common w-16 h-16 flex items-center justify-center 
           bg-gradient-to-br from-indigo-100 to-white shadow-inner rounded-2xl 
-          text-indigo-600 text-3xl transform transition duration-300 group-hover:scale-110 group-hover:-rotate-6">
+          text-indigo-600 text-3xl transform transition duration-300 group-hover:scale-110 group-hover:-rotate-6"
+                            >
                                 ✅
                             </div>
-                            <h3 className="common text-3xl font-bold text-indigo-600">Our Solution</h3>
+                            <h3 className="common text-3xl font-bold text-indigo-600">
+                                Our Solution
+                            </h3>
                         </div>
                         <p className="common text-gray-800 text-lg leading-relaxed font-medium">
-                            <span className="common text-indigo-600 font-semibold">EduSmart</span> automates and integrates every academic and administrative function in one seamless platform.
+                            <span className="common text-indigo-600 font-semibold">
+                                EduSmart
+                            </span>{' '}
+                            automates and integrates every academic and
+                            administrative function in one seamless platform.
                         </p>
                     </div>
                 </div>
             </section>
-
 
             {/* Features */}
             <section
@@ -260,78 +284,145 @@ function page() {
                 <div className="common absolute inset-0 bg-[radial-gradient(transparent,transparent,rgba(0,0,0,0.04))] dark:bg-[radial-gradient(transparent,transparent,rgba(255,255,255,0.04))] z-0 pointer-events-none" />
                 <div className="common absolute top-0 left-0 w-full h-20 bg-white/10 dark:bg-white/5 blur-sm z-10 pointer-events-none" />
 
-                {/* Heading */}
-                <h2 className="common text-5xl sm:text-6xl font-extrabold mb-16 text-indigo-700 dark:text-indigo-400 relative z-10 tracking-tight leading-tight">
+             
+                <h2
+                    className="common text-5xl sm:text-6xl font-extrabold mb-16 text-indigo-700 dark:text-indigo-400 relative z-10 tracking-tight leading-tight"
+                    style={{
+                        fontFamily:
+                            "'Outfit', 'Poppins', 'Segoe UI', 'Arial', sans-serif",
+                        letterSpacing: '-0.01em',
+                        lineHeight: 1.1,
+                    }}
+                >
                     ✨ Key Features
-                    <span className="common block mt-4 w-20 h-[5px] mx-auto bg-indigo-500/80 rounded-full shadow-md" />
+                    <span className="common block mt-4 w-24 h-[5px] mx-auto bg-indigo-500/80 rounded-full shadow-md" />
                 </h2>
 
                 {/* Cards */}
-                <div className="common grid sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-7xl mx-auto relative z-10">
+                <div className="common grid sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-7xl mx-auto relative z-10">
                     {[
                         {
                             icon: '👨‍🎓',
-                            title: 'Student Info System',
-                            desc: 'Manage student profiles and grades in one place.',
+                            title: 'Student Management',
+                            desc: 'Add, edit, filter, import/export student records with ease.',
+                            gradient:
+                                'from-blue-500 via-purple-500 to-pink-500',
+                            glowColor: 'blue-500',
+                        },
+                        {
+                            icon: '📚',
+                            title: 'Class & Subject Management',
+                            desc: 'Create classes, assign teachers, map subjects efficiently.',
+                            gradient: 'from-green-500 via-teal-500 to-cyan-500',
+                            glowColor: 'green-500',
+                        },
+                        {
+                            icon: '💳',
+                            title: 'Smart Fee Management',
+                            desc: 'Real-time dues tracking, UPI payments, instant receipts.',
+                            gradient: 'from-orange-500 via-red-500 to-pink-500',
+                            glowColor: 'orange-500',
+                        },
+                        {
+                            icon: '🆔',
+                            title: 'ID & Admit Cards',
+                            desc: 'Generate and print student cards instantly.',
+                            gradient:
+                                'from-purple-500 via-indigo-500 to-blue-500',
+                            glowColor: 'purple-500',
                         },
                         {
                             icon: '📅',
-                            title: 'Timetable & Attendance',
-                            desc: 'Automated scheduling and real-time tracking.',
+                            title: 'Exam Timetables',
+                            desc: 'Easy creation and sharing of examination schedules.',
+                            gradient:
+                                'from-teal-500 via-green-500 to-emerald-500',
+                            glowColor: 'teal-500',
                         },
                         {
-                            icon: '🧾',
-                            title: 'Fee Payments',
-                            desc: 'Easy invoicing with online payment options.',
-                        },
-                        {
-                            icon: '📝',
-                            title: 'Exam Reports',
-                            desc: 'Schedule exams and auto-generate results.',
-                        },
-                        {
-                            icon: '👩‍🏫',
-                            title: 'Teacher Tools',
-                            desc: 'Dashboards for staff and teaching resources.',
-                        },
-                        {
-                            icon: '📲',
-                            title: 'Parent App',
-                            desc: 'Instant updates and progress tracking via app.',
+                            icon: '🔐',
+                            title: 'Role-Based Access',
+                            desc: 'Admin, student, and staff login portals with secure access.',
+                            gradient:
+                                'from-rose-500 via-pink-500 to-purple-500',
+                            glowColor: 'rose-500',
                         },
                     ].map((feature, index) => (
                         <div
                             key={index}
-                            className="common group relative bg-white/30 dark:bg-white/10 backdrop-blur-[16px] border border-white/30 dark:border-white/20 p-5 rounded-3xl shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.04] overflow-hidden"
+                            className="common group relative cursor-pointer"
                             data-aos="fade-up"
                             data-aos-delay={index * 120}
                         >
-                            <div className="common absolute -inset-[2px] rounded-3xl bg-gradient-to-br from-indigo-500/20 to-pink-500/20 blur-lg opacity-0 group-hover:opacity-40 transition-all duration-700 pointer-events-none" />
+                            {/* Outer glow effect */}
+                            <div
+                                className={`common absolute -inset-1 bg-gradient-to-r ${feature.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-75 transition-all duration-1000 group-hover:duration-200 animate-pulse`}
+                            />
 
-                            <div className="common relative w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 shadow-xl group-hover:shadow-2xl transition duration-300">
-                                <span className="common text-3xl z-10 group-hover:animate-pulse">{feature.icon}</span>
-                                <div className="common absolute inset-0 rounded-full bg-white/20 blur-xl opacity-20 group-hover:opacity-40 transition-all" />
+                            {/* Main card */}
+                            <div className="common relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border border-white/20 dark:border-gray-700/50 p-8 rounded-3xl shadow-2xl transition-all duration-700 transform group-hover:-translate-y-4 group-hover:scale-105 overflow-hidden">
+                                {/* Animated background particles */}
+                                <div className="common absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div className="common absolute top-4 left-4 w-2 h-2 bg-white/40 rounded-full animate-ping" />
+                                    <div className="common absolute top-8 right-6 w-1 h-1 bg-white/30 rounded-full animate-pulse" />
+                                    <div className="common absolute bottom-6 left-8 w-1.5 h-1.5 bg-white/50 rounded-full animate-bounce" />
+                                </div>
+
+                                {/* Icon container with enhanced animations */}
+                                <div className="common relative mb-6">
+                                    <div
+                                        className={`common w-20 h-20 mx-auto flex items-center justify-center rounded-2xl bg-gradient-to-tr ${feature.gradient} shadow-2xl transition-all duration-500 group-hover:shadow-3xl group-hover:rotate-6 group-hover:scale-110`}
+                                    >
+                                        <span className="common text-4xl z-10 group-hover:scale-125 transition-transform duration-300">
+                                            {feature.icon}
+                                        </span>
+                                        <div className="common absolute inset-0 rounded-2xl bg-white/30 blur-xl opacity-0 group-hover:opacity-50 transition-all duration-300" />
+                                    </div>
+
+                                    {/* Floating ring animation */}
+                                    <div
+                                        className={`common absolute inset-0 w-20 h-20 mx-auto rounded-2xl border-2 border-${feature.glowColor}/30 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-700 animate-pulse`}
+                                    />
+                                </div>
+
+                                {/* Content */}
+                                <div className="common space-y-3">
+                                    <h3 className="common text-xl font-bold text-gray-800 dark:text-white tracking-wide group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 transition-all duration-300">
+                                        {feature.title}
+                                    </h3>
+
+                                    <p className="common text-gray-600 dark:text-gray-300 text-sm leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-all duration-300">
+                                        {feature.desc}
+                                    </p>
+                                </div>
+
+                                {/* Hover effect overlay */}
+                                <div className="common absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+
+                                {/* Bottom shine effect */}
+                                <div className="common absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             </div>
-
-                            <h3 className="common text-base font-semibold text-gray-800 dark:text-white mb-1 tracking-wide group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
-                                {feature.title}
-                            </h3>
-
-                            <p className="common text-gray-600 dark:text-gray-300 text-sm leading-relaxed group-hover:opacity-95 transition-opacity duration-300">
-                                {feature.desc}
-                            </p>
                         </div>
                     ))}
                 </div>
             </section>
-
-
             {/* Demo */}
-            <section id="demo" className="common py-20 bg-white text-center px-4" data-aos="zoom-in">
-                <h2 className="common text-3xl font-bold mb-8">Live Screens & Demo</h2>
+            <section
+                id="demo"
+                className="common py-20 bg-white text-center px-4"
+                data-aos="zoom-in"
+            >
+                <h2 className="common text-3xl font-bold mb-8">
+                    Live Screens & Demo
+                </h2>
                 {/* Optional Screenshot */}
                 {/* <img src="/erp-screenshot.png" alt="ERP Screenshot" className="common my-8 w-full max-w-4xl mx-auto rounded shadow-lg" /> */}
-                <a href="#" className="common bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition">Watch Full Demo</a>
+                <a
+                    href="#"
+                    className="common bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition"
+                >
+                    Watch Full Demo
+                </a>
             </section>
 
             {/* Benefits */}
@@ -339,65 +430,81 @@ function page() {
                 id="benefits"
                 className="common relative py-20 px-6 bg-gradient-to-br from-white via-indigo-100 to-white overflow-hidden"
             >
-
                 <div className="common absolute -top-40 left-1/2 transform -translate-x-1/2 w-[40rem] h-[40rem] bg-indigo-300 rounded-full blur-[160px] opacity-20"></div>
 
                 <div className="common relative max-w-7xl mx-auto text-center z-10">
-
-                    <h2 className="common text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight mb-4">
-                        Why Smart Schools <br />
-                        <span className="common text-indigo-600">Love EduSmart</span>
+                    <h2 className="common text-4xl md:text-5xl font-black text-black mb-4 leading-tight">
+                        Why Thundergits School <br />
+                        <span className="common text-indigo-600">ERP?</span>
                     </h2>
-                    <p className="common text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-                        Save time, gain insights, and build better parent relationships — all in one place.
+                    <p className="common text-gray-600 text-lg mb-12">
+                        Experience the future of school management with our
+                        cutting-edge ERP solution.
                     </p>
-
-
                     <div className="common grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                        <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-indigo-100 transition-all duration-300 group hover:scale-105 hover:ring-2 hover:ring-indigo-300">
-                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-indigo-400 to-indigo-600 text-white rounded-full text-4xl transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 shadow-lg">
-                                ⏱
+                        <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-green-200 transition-all duration-500 group hover:scale-110 hover:ring-4 hover:ring-green-300 hover:-translate-y-2 hover:bg-gradient-to-br hover:from-green-50 hover:to-white relative overflow-hidden">
+                            <div className="common absolute inset-0 bg-gradient-to-r from-green-400/10 to-green-600/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
+                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-green-400 to-green-600 text-white rounded-full text-4xl transition-all duration-700 group-hover:rotate-[360deg] group-hover:scale-125 shadow-xl group-hover:shadow-2xl group-hover:bg-gradient-to-tr group-hover:from-green-500 group-hover:to-green-700 animate-bounce hover:animate-none relative z-10">
+                                💰
                             </div>
-                            <h3 className="common text-lg font-semibold text-gray-800 text-center mb-1">
-                                Save <span className="common text-indigo-600 font-bold">60%</span> admin time
+                            <h3 className="common text-lg font-bold text-gray-800 text-center mb-2 group-hover:text-green-700 transition-colors duration-300 relative z-10 group-hover:animate-pulse">
+                                Most affordable ERP globally
                             </h3>
-                            <p className="common text-sm text-gray-500 text-center">Automate attendance, reporting & more</p>
+                            <p className="common text-sm text-gray-600 text-center group-hover:text-green-600 transition-colors duration-300 relative z-10">
+                                Save up to 70% on costs compared to
+                                international solutions while getting premium
+                                features
+                            </p>
                         </div>
 
-                        <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-indigo-100 transition-all duration-300 group hover:scale-105 hover:ring-2 hover:ring-indigo-300">
-                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-indigo-400 to-indigo-600 text-white rounded-full text-4xl transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 shadow-lg">
-                                📊
+                        <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-blue-200 transition-all duration-500 group hover:scale-110 hover:ring-4 hover:ring-blue-300 hover:-translate-y-2 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white relative overflow-hidden">
+                            <div className="common absolute inset-0 bg-gradient-to-r from-blue-400/10 to-blue-600/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
+                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-blue-400 to-blue-600 text-white rounded-full text-4xl transition-all duration-700 group-hover:rotate-[360deg] group-hover:scale-125 shadow-xl group-hover:shadow-2xl group-hover:bg-gradient-to-tr group-hover:from-blue-500 group-hover:to-blue-700 animate-pulse hover:animate-bounce relative z-10">
+                                📱
                             </div>
-                            <h3 className="common text-lg font-semibold text-gray-800 text-center mb-1">
-                                Real-time analytics
+                            <h3 className="common text-lg font-bold text-gray-800 text-center mb-2 group-hover:text-blue-700 transition-colors duration-300 relative z-10 group-hover:animate-pulse">
+                                Mobile + Web + PC apps
                             </h3>
-                            <p className="common text-sm text-gray-500 text-center">Track student progress instantly</p>
+                            <p className="common text-sm text-gray-600 text-center group-hover:text-blue-600 transition-colors duration-300 relative z-10">
+                                Access from anywhere - Android, iOS, Web
+                                browsers & Windows desktop applications
+                            </p>
                         </div>
 
-                        <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-indigo-100 transition-all duration-300 group hover:scale-105 hover:ring-2 hover:ring-indigo-300">
-                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-indigo-400 to-indigo-600 text-white rounded-full text-4xl transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 shadow-lg">
-                                📈
+                        <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-purple-200 transition-all duration-500 group hover:scale-110 hover:ring-4 hover:ring-purple-300 hover:-translate-y-2 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white relative overflow-hidden">
+                            <div className="common absolute inset-0 bg-gradient-to-r from-purple-400/10 to-purple-600/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
+                            <div
+                                className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-purple-400 to-purple-600 text-white rounded-full text-4xl transition-all duration-700 group-hover:rotate-[360deg] group-hover:scale-125 shadow-xl group-hover:shadow-2xl group-hover:bg-gradient-to-tr group-hover:from-purple-500 group-hover:to-purple-700 animate-spin hover:animate-bounce relative z-10"
+                                style={{ animationDuration: '3s' }}
+                            >
+                                ⚡
                             </div>
-                            <h3 className="common text-lg font-semibold text-gray-800 text-center mb-1">
-                                Higher satisfaction
+                            <h3 className="common text-lg font-bold text-gray-800 text-center mb-2 group-hover:text-purple-700 transition-colors duration-300 relative z-10 group-hover:animate-pulse">
+                                Built on latest technologies
                             </h3>
-                            <p className="common text-sm text-gray-500 text-center">Parents stay informed and involved</p>
+                            <p className="common text-sm text-gray-600 text-center group-hover:text-purple-600 transition-colors duration-300 relative z-10">
+                                React, Node.js, AI-powered analytics & cloud
+                                infrastructure for future-ready performance
+                            </p>
                         </div>
 
-                        <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-indigo-100 transition-all duration-300 group hover:scale-105 hover:ring-2 hover:ring-indigo-300">
-                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-indigo-400 to-indigo-600 text-white rounded-full text-4xl transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 shadow-lg">
-                                🔒
+                        <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-orange-200 transition-all duration-500 group hover:scale-110 hover:ring-4 hover:ring-orange-300 hover:-translate-y-2 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white relative overflow-hidden">
+                            <div className="common absolute inset-0 bg-gradient-to-r from-orange-400/10 to-orange-600/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
+                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-full text-4xl transition-all duration-700 group-hover:rotate-[360deg] group-hover:scale-125 shadow-xl group-hover:shadow-2xl group-hover:bg-gradient-to-tr group-hover:from-orange-500 group-hover:to-orange-700 animate-pulse hover:animate-bounce relative z-10">
+                                🇮🇳
                             </div>
-                            <h3 className="common text-lg font-semibold text-gray-800 text-center mb-1">
-                                Fully secure & cloud-based
+                            <h3 className="common text-lg font-bold text-gray-800 text-center mb-2 group-hover:text-orange-700 transition-colors duration-300 relative z-10 group-hover:animate-pulse">
+                                Made in India
                             </h3>
-                            <p className="common text-sm text-gray-500 text-center">Military-grade data protection</p>
+                            <p className="common text-sm text-gray-600 text-center group-hover:text-orange-600 transition-colors duration-300 relative z-10">
+                                Proudly developed in India with local support,
+                                compliance & understanding of Indian education
+                                system
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
-
 
             {/* Integrations */}
             <section
@@ -411,36 +518,52 @@ function page() {
                     Epic Integrations
                 </h2>
                 <p className="common text-gray-400 text-lg mb-16 max-w-2xl mx-auto text-center">
-                    Supercharge your platform with iconic tools that work like magic ✨
+                    Supercharge your platform with iconic tools that work like
+                    magic ✨
                 </p>
 
                 <div className="common flex justify-center flex-wrap gap-10 max-w-6xl mx-auto">
                     <div className="common relative group bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl px-6 py-8 w-[250px] text-center shadow-lg hover:shadow-[0_0_30px_#ff00c855] transition duration-500 overflow-hidden">
                         <div className="common absolute -top-6 -left-6 w-20 h-20 bg-pink-500 rounded-full blur-xl opacity-30 group-hover:scale-150 transition-transform duration-700"></div>
-                        <div className="common text-5xl mb-4 animate-pulse">📚</div>
-                        <div className="common text-xl font-semibold text-pink-300">Google Classroom</div>
+                        <div className="common text-5xl mb-4 animate-pulse">
+                            📚
+                        </div>
+                        <div className="common text-xl font-semibold text-pink-300">
+                            Google Classroom
+                        </div>
                     </div>
 
                     <div className="common relative group bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl px-6 py-8 w-[250px] text-center shadow-lg hover:shadow-[0_0_30px_#00d9ff66] transition duration-500 overflow-hidden">
                         <div className="common absolute -top-6 -right-6 w-20 h-20 bg-cyan-400 rounded-full blur-xl opacity-30 group-hover:scale-150 transition-transform duration-700"></div>
-                        <div className="common text-5xl mb-4 animate-pulse">🎥</div>
-                        <div className="common text-xl font-semibold text-cyan-300">Zoom</div>
+                        <div className="common text-5xl mb-4 animate-pulse">
+                            🎥
+                        </div>
+                        <div className="common text-xl font-semibold text-cyan-300">
+                            Zoom
+                        </div>
                     </div>
 
                     <div className="common relative group bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl px-6 py-8 w-[250px] text-center shadow-lg hover:shadow-[0_0_30px_#00ff9966] transition duration-500 overflow-hidden">
                         <div className="common absolute -bottom-6 -left-6 w-20 h-20 bg-green-400 rounded-full blur-xl opacity-30 group-hover:scale-150 transition-transform duration-700"></div>
-                        <div className="common text-5xl mb-4 animate-pulse">💬</div>
-                        <div className="common text-xl font-semibold text-green-300">WhatsApp API</div>
+                        <div className="common text-5xl mb-4 animate-pulse">
+                            💬
+                        </div>
+                        <div className="common text-xl font-semibold text-green-300">
+                            WhatsApp API
+                        </div>
                     </div>
 
                     <div className="common relative group bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl px-6 py-8 w-[250px] text-center shadow-lg hover:shadow-[0_0_30px_#ffcc0066] transition duration-500 overflow-hidden">
                         <div className="common absolute -bottom-6 -right-6 w-20 h-20 bg-yellow-400 rounded-full blur-xl opacity-30 group-hover:scale-150 transition-transform duration-700"></div>
-                        <div className="common text-5xl mb-4 animate-pulse">💳</div>
-                        <div className="common text-xl font-semibold text-yellow-300">UPI & Razorpay</div>
+                        <div className="common text-5xl mb-4 animate-pulse">
+                            💳
+                        </div>
+                        <div className="common text-xl font-semibold text-yellow-300">
+                            UPI & Razorpay
+                        </div>
                     </div>
                 </div>
             </section>
-
 
             {/* Testimonials */}
             <section
@@ -459,9 +582,12 @@ function page() {
                             Verified Feedback
                         </div>
                         <p className="common italic text-gray-700 text-[15px] leading-relaxed">
-                            “EduSmart has streamlined everything—from attendance to online fees. Parents love it!”
+                            “EduSmart has streamlined everything—from attendance
+                            to online fees. Parents love it!”
                         </p>
-                        <div className="common mt-3 text-yellow-400 text-base tracking-wide">★★★★★</div>
+                        <div className="common mt-3 text-yellow-400 text-base tracking-wide">
+                            ★★★★★
+                        </div>
                         <cite className="common block mt-1 font-medium text-indigo-600 text-sm">
                             – Principal, Green Valley School
                         </cite>
@@ -473,9 +599,12 @@ function page() {
                             Verified Feedback
                         </div>
                         <p className="common italic text-gray-700 text-[15px] leading-relaxed">
-                            “We reduced paperwork by 80%. The parent-teacher communication has never been better.”
+                            “We reduced paperwork by 80%. The parent-teacher
+                            communication has never been better.”
                         </p>
-                        <div className="common mt-3 text-yellow-400 text-base tracking-wide">★★★★★</div>
+                        <div className="common mt-3 text-yellow-400 text-base tracking-wide">
+                            ★★★★★
+                        </div>
                         <cite className="common block mt-1 font-medium text-indigo-600 text-sm">
                             – Admin Head, Sunrise Academy
                         </cite>
@@ -487,45 +616,47 @@ function page() {
                 <div className="common absolute w-40 h-40 bg-indigo-200 rounded-full blur-2xl opacity-20 bottom-0 right-10 z-0"></div>
             </section>
 
-
             {/* Pricing */}
             <section className="common relative py-24 bg-gray-50 dark:bg-gray-950">
                 <div className="common text-center mb-16">
-                    <h2 className="common text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">Choose Your Power-Up</h2>
+                    <h2 className="common text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
+                        Choose Your Power-Up
+                    </h2>
                     <p className="common mt-4 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-                        Plans built for every dev level. Start light, go beast mode anytime.
+                        Plans built for every dev level. Start light, go beast
+                        mode anytime.
                     </p>
                 </div>
 
                 <div className="common relative grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-6">
                     {[
                         {
-                            title: "Solo Hacker",
-                            price: "$19",
-                            desc: "Perfect for indie devs & portfolio projects.",
-                            team: "1 dev",
-                            support: "Basic support",
-                            updates: "6 months",
-                            featured: false
+                            title: 'Solo Hacker',
+                            price: '$19',
+                            desc: 'Perfect for indie devs & portfolio projects.',
+                            team: '1 dev',
+                            support: 'Basic support',
+                            updates: '6 months',
+                            featured: false,
                         },
                         {
-                            title: "Team Turbo",
-                            price: "$89",
-                            desc: "Best for teams shipping fast with fire.",
-                            team: "Up to 10 devs",
-                            support: "Priority support",
-                            updates: "12 months",
-                            featured: true
+                            title: 'Team Turbo',
+                            price: '$89',
+                            desc: 'Best for teams shipping fast with fire.',
+                            team: 'Up to 10 devs',
+                            support: 'Priority support',
+                            updates: '12 months',
+                            featured: true,
                         },
                         {
-                            title: "Enterprise Godmode",
-                            price: "$499",
-                            desc: "Tailored for enterprise dominance.",
-                            team: "100+ devs",
-                            support: "Dedicated manager",
-                            updates: "Lifetime",
-                            featured: false
-                        }
+                            title: 'Enterprise Godmode',
+                            price: '$499',
+                            desc: 'Tailored for enterprise dominance.',
+                            team: '100+ devs',
+                            support: 'Dedicated manager',
+                            updates: 'Lifetime',
+                            featured: false,
+                        },
                     ].map((plan) => (
                         <div
                             key={plan.title}
@@ -547,66 +678,145 @@ function page() {
                             </p>
                             <div className="common text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 relative z-10">
                                 {plan.price}
-                                <span className="common text-base font-medium text-gray-500 dark:text-gray-400">/mo</span>
+                                <span className="common text-base font-medium text-gray-500 dark:text-gray-400">
+                                    /mo
+                                </span>
                             </div>
                             <ul className="common space-y-1 text-sm text-gray-700 dark:text-gray-300 mb-6 relative z-10">
-                                <li >👨‍💻 Team size: <strong>{plan.team}</strong></li>
-                                <li >🛠 Support: <strong>{plan.support}</strong></li>
-                                <li >🔄 Updates: <strong>{plan.updates}</strong></li>
+                                <li>
+                                    👨‍💻 Team size: <strong>{plan.team}</strong>
+                                </li>
+                                <li>
+                                    🛠 Support: <strong>{plan.support}</strong>
+                                </li>
+                                <li>
+                                    🔄 Updates: <strong>{plan.updates}</strong>
+                                </li>
                             </ul>
-                            <button
-                                className="common relative z-10 w-full py-2 rounded-xl text-sm font-semibold transition-colors bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
-                            >
+                            <button className="common relative z-10 w-full py-2 rounded-xl text-sm font-semibold transition-colors bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
                                 Get {plan.title}
                             </button>
                         </div>
                     ))}
                 </div>
-
             </section>
-
 
             {/* FAQ */}
             <section
                 id="faq"
-                className="common py-24 bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-800 px-4"
+                className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 px-4 relative overflow-hidden"
                 data-aos="fade-up"
             >
-                <h2 className="common text-4xl font-extrabold text-center text-white mb-12">
-                    Frequently Asked Questions
-                </h2>
-                <div className="common max-w-3xl mx-auto space-y-6">
-                    {[
-                        {
-                            question: "Can EduSmart work for multiple campuses?",
-                            answer:
-                                "Yes, our Enterprise plan supports multi-campus and branch-level reporting.",
-                        },
-                        {
-                            question: "Do parents need to install any app?",
-                            answer:
-                                "Yes, a lightweight parent app is available on Android & iOS.",
-                        },
-                        {
-                            question: "Is training provided?",
-                            answer: "Yes, we offer complete onboarding and staff training.",
-                        },
-                    ].map((item, idx) => (
-                        <details
-                            key={idx}
-                            className="common group bg-white/10 backdrop-blur-sm p-6 rounded-2xl shadow-md transition duration-300 hover:shadow-xl"
-                        >
-                            <summary className="common font-semibold text-lg text-white cursor-pointer flex items-center justify-between">
-                                {item.question}
-                                <span className="common transition-transform duration-300 group-open:rotate-180">
-                                    ▼
-                                </span>
-                            </summary>
-                            <p className="common mt-3 text-gray-200 leading-relaxed">{item.answer}</p>
-                        </details>
-                    ))}
+                {/* Animated background elements */}
+                <div className="absolute inset-0">
+                    <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+                    <div className="absolute top-40 right-10 w-72 h-72 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
+                    <div className="absolute -bottom-32 left-20 w-72 h-72 bg-pink-500/10 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-500"></div>
+                </div>
+
+                <div className="relative z-10">
+                    <div className="text-center mb-16">
+                        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm border border-white/10 rounded-full px-6 py-2 mb-6">
+                            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                            <span className="text-blue-200 text-2xl w-12 font-medium">
+                                FAQ
+                            </span>
+                        </div>
+                        <h2 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-purple-100 mb-4 leading-tight">
+                            Got Questions?
+                        </h2>
+                        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                            Find answers to the most common questions about
+                            EduSmart
+                        </p>
+                    </div>
+
+                    <div className="max-w-4xl mx-auto space-y-4">
+                        {[
+                            {
+                                question:
+                                    'Can EduSmart work for multiple campuses?',
+                                answer: 'Yes, our Enterprise plan supports multi-campus and branch-level reporting with centralized administration and individual campus management.',
+                            },
+                            {
+                                question: 'Do parents need to install any app?',
+                                answer: 'Yes, a lightweight parent app is available on Android & iOS for real-time updates, notifications, and easy communication with the school.',
+                            },
+                            {
+                                question: 'Is training provided?',
+                                answer: 'Yes, we offer complete onboarding and staff training with live sessions, documentation, and ongoing support to ensure smooth adoption.',
+                            },
+                            {
+                                question:
+                                    'Is ThunderSchool suitable for small schools with limited staff?',
+                                answer: 'Absolutely. ThunderSchool is lightweight, user-friendly, and designed for schools of all sizes — including small and rural institutions with minimal technical expertise required.',
+                            },
+                            {
+                                question:
+                                    'Do students and parents get login access?',
+                                answer: "Yes. Students can log in via mobile or web to check fees, download admit cards, and view exam schedules. Parents get dedicated access for monitoring their child's progress.",
+                            },
+                            {
+                                question: 'Is online fee payment supported?',
+                                answer: 'Yes. ThunderSchool supports secure online payments via UPI, cards, and net banking, along with auto-generated receipts and payment tracking.',
+                            },
+                            {
+                                question:
+                                    'Can I generate ID and admit cards within the ERP?',
+                                answer: 'Yes. ThunderSchool includes built-in tools to design, generate, and print ID cards and admit cards — no need for third-party software or external designers.',
+                            },
+                            {
+                                question:
+                                    'Is the system cloud-based? What about offline access?',
+                                answer: 'ThunderSchool runs on a cloud-first architecture for real-time access from anywhere. The desktop app includes limited offline functionality and syncs data when reconnected.',
+                            },
+                            {
+                                question: 'What kind of support do you offer?',
+                                answer: 'We provide full onboarding, live training, 24/7 customer support, regular system updates, and dedicated account management — ensuring your staff is always confident using the system.',
+                            },
+                            {
+                                question:
+                                    'Can we migrate from another ERP or manual system?',
+                                answer: 'Yes. We help you import all your existing data — students, fees, subjects, attendance records, and more — from Excel, other ERPs, or manual systems. Migration support is part of our setup service.',
+                            },
+                        ].map((item, idx) => (
+                            <details
+                                key={idx}
+                                className="group bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl transition-all duration-500 hover:shadow-purple-500/20 hover:border-purple-400/30 hover:from-white/10 hover:to-white/15 hover:-translate-y-2 hover:scale-[1.02]"
+                            >
+                                <summary className="font-bold text-xl text-white cursor-pointer flex items-center justify-between p-8 list-none">
+                                    <span className="flex items-center gap-4">
+                                        <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold text-sm">
+                                            {idx + 1}
+                                        </div>
+                                        <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                                            {item.question}
+                                        </span>
+                                    </span>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center border border-white/20 group-hover:border-purple-400/40 transition-all duration-300">
+                                            <span className="text-2xl text-white/80 transition-transform duration-500 group-open:rotate-180 group-hover:text-purple-300">
+                                                ▼
+                                            </span>
+                                        </div>
+                                    </div>
+                                </summary>
+
+                                <div className="px-8 pb-8">
+                                    <div className="ml-12 pl-4 border-l-2 border-gradient-to-b from-blue-400/50 to-purple-400/50">
+                                        <div className="bg-gradient-to-br from-blue-950/30 to-purple-950/30 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                                            <p className="text-gray-200 leading-relaxed text-lg font-medium">
+                                                {item.answer}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
+                        ))}
+                    </div>
                 </div>
             </section>
+
             {showModal && (
                 <div className="common fixed inset-0 bg-black/30 backdrop-blur-sm flex justify-center items-center z-50">
                     <div className="common bg-white rounded-2xl shadow-2xl w-96 p-8 relative">
@@ -648,7 +858,8 @@ function page() {
                         📞 Talk to Our Team
                     </h2>
                     <p className="common text-lg text-gray-600 mb-8">
-                        We’re here to help with all your questions. Reach out any time!
+                        We’re here to help with all your questions. Reach out
+                        any time!
                     </p>
 
                     <div className="common flex flex-col sm:flex-row justify-center items-center gap-6 mb-10">
@@ -667,7 +878,6 @@ function page() {
                     </div>
 
                     <a
-
                         href="#demo"
                         className="common inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition duration-300"
                     >
@@ -679,7 +889,11 @@ function page() {
             {/* Footer */}
             <footer className="common bg-gray-50 text-center py-6 text-sm text-gray-500 border-t border-gray-200">
                 <p>
-                    &copy; 2025 <span className="common font-semibold text-indigo-600">EduSmart</span>. Built by{" "}
+                    &copy; 2025{' '}
+                    <span className="common font-semibold text-indigo-600">
+                        EduSmart
+                    </span>
+                    . Built by{' '}
                     <a
                         href="https://thundergits.com"
                         target="_blank"
@@ -692,9 +906,8 @@ function page() {
                     .
                 </p>
             </footer>
-
         </div>
-    );
+    )
 }
 
-export default page;
+export default page
