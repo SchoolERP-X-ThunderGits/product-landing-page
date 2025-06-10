@@ -1,20 +1,23 @@
 import '@/assets/styles/app.css'
-import Head from 'next/head'
+import { ReactNode } from 'react'
 
 export const metadata = {
-  title: 'EduSmart | Smart School ERP',
-  description: 'EduSmart - The ultimate school management solution.',
+  title: 'edugits | Smart School ERP',
+  description: 'edugits - The ultimate school management solution.',
   icons: {
-    icon: '/favicon.png', // Place favicon.ico in the /public folder
+    icon: '/favicon.png',
   },
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <Head>
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Poppins:wght@700&display=swap" rel="stylesheet" />
-      </Head>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Poppins:wght@700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>
         {children}
       </body>
