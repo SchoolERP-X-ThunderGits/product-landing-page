@@ -2,12 +2,22 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import AOS from 'aos'
+import Link from 'next/link';
+import { Facebook, Twitter, Instagram, Mail } from 'lucide-react';
 import 'aos/dist/aos.css'
 import { IoMenuSharp } from 'react-icons/io5'
 function page() {
     const [activeSection, setActiveSection] = useState('') // Track the active section
     const [showModal, setShowModal] = useState(false)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const handleParentLogin = () => {
+        window.location.href = 'https://vidya360.thundergits.com/student';
+    };
+
+    const handleAdminLogin = () => {
+        window.location.href = 'https://vidya360.thundergits.com/admin';
+    };
+
 
     const navLinks = [
         { label: 'Features', id: 'features' },
@@ -86,13 +96,13 @@ function page() {
                             href="#demo"
                             className="common bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:shadow-xl transition duration-300 hover:scale-105"
                         >
-                            🎓 Book a Demo
+                            Book a Demo
                         </a>
                         <button
                             onClick={() => setShowModal(true)}
                             className="common bg-white text-indigo-600 border border-indigo-600 px-5 py-2 rounded-lg font-semibold hover:bg-indigo-50 transition hover:scale-105"
                         >
-                            🔐 Login
+                            Login
                         </button>
                     </div>
 
@@ -199,7 +209,7 @@ function page() {
             {/* Problem & Solution */}
             <section
                 id="problem-solution"
-                className="common relative py-28 px-6 bg-gradient-to-br from-indigo-50 via-white to-indigo-100 overflow-hidden"
+                className="common relative py-28 px-6  overflow-hidden"
                 data-aos="fade-up"
             >
                 {/* Glow Background Blobs */}
@@ -221,18 +231,12 @@ function page() {
                 <div className="common relative z-10 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
                     {/* Problem Card */}
                     <div
-                        className="common group bg-white/60 backdrop-blur-xl backdrop-saturate-150 rounded-[2rem] p-10 
-        border border-white/30 shadow-[0_30px_80px_rgba(0,0,0,0.08)] 
+                        className="common group bg-gray-100 backdrop-blur-xl backdrop-saturate-100 rounded-[2rem] p-10 
+        border border-white/30 
         transition-all duration-300 hover:scale-[1.015] hover:shadow-[0_40px_90px_rgba(0,0,0,0.12)]"
                     >
                         <div className="common flex items-center gap-4 mb-6">
-                            <div
-                                className="common w-16 h-16 flex items-center justify-center 
-          bg-gradient-to-br from-red-100 to-white shadow-inner rounded-2xl 
-          text-red-500 text-3xl transform transition duration-300 group-hover:scale-110 group-hover:rotate-6"
-                            >
-                                ❌
-                            </div>
+                            
                             <h3 className="common text-3xl font-bold text-red-500">
                                 The Problem
                             </h3>
@@ -246,18 +250,12 @@ function page() {
 
                     {/* Solution Card */}
                     <div
-                        className="common group bg-white/60 backdrop-blur-xl backdrop-saturate-150 rounded-[2rem] p-10 
-        border border-white/30 shadow-[0_30px_80px_rgba(0,0,0,0.08)] 
+                        className="common group bg-gray-100 backdrop-blur-xl backdrop-saturate-150 rounded-[2rem] p-10 
+        border border-white/30 
         transition-all duration-300 hover:scale-[1.015] hover:shadow-[0_40px_90px_rgba(0,0,0,0.12)]"
                     >
                         <div className="common flex items-center gap-4 mb-6">
-                            <div
-                                className="common w-16 h-16 flex items-center justify-center 
-          bg-gradient-to-br from-indigo-100 to-white shadow-inner rounded-2xl 
-          text-indigo-600 text-3xl transform transition duration-300 group-hover:scale-110 group-hover:-rotate-6"
-                            >
-                                ✅
-                            </div>
+                           
                             <h3 className="common text-3xl font-bold text-indigo-600">
                                 Our Solution
                             </h3>
@@ -276,7 +274,7 @@ function page() {
             {/* Features */}
             <section
                 id="features"
-                className="common relative py-28 px-4 bg-gradient-to-br from-[#eff3ff] to-[#dce3ff] dark:from-[#0d111c] dark:to-[#1a2233] text-center overflow-hidden"
+                className="common relative py-28 px-4  text-center overflow-hidden"
                 data-aos="fade-up"
             >
                 {/* Backgrounds */}
@@ -285,18 +283,14 @@ function page() {
                 <div className="common absolute top-0 left-0 w-full h-20 bg-white/10 dark:bg-white/5 blur-sm z-10 pointer-events-none" />
 
 
-                <h2
-                    className="common text-5xl sm:text-6xl font-extrabold mb-16 text-indigo-700 dark:text-indigo-400 relative z-10 tracking-tight leading-tight"
-                    style={{
-                        fontFamily:
-                            "'Outfit', 'Poppins', 'Segoe UI', 'Arial', sans-serif",
-                        letterSpacing: '-0.01em',
-                        lineHeight: 1.1,
-                    }}
-                >
-                    ✨ Key Features
-                    <span className="common block mt-4 w-24 h-[5px] mx-auto bg-indigo-500/80 rounded-full shadow-md" />
-                </h2>
+              <div className="common relative z-10 text-center max-w-3xl mx-auto mb-20">
+                    <h2 className="common text-5xl font-extrabold tracking-tight text-gray-900 mb-4 leading-tight">
+                        Key Features
+                    </h2>
+                    <p className="common text-lg text-gray-600 font-medium">
+                        Core Functionalities That Drive Your School Forward
+                    </p>
+                </div>
 
                 {/* Cards */}
                 <div className="common grid sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-7xl mx-auto relative z-10">
@@ -305,47 +299,38 @@ function page() {
                             icon: '👨‍🎓',
                             title: 'Student Management',
                             desc: 'Add, edit, filter, import/export student records with ease.',
-                            gradient:
-                                'from-blue-500 via-purple-500 to-pink-500',
-                            glowColor: 'blue-500',
+                           
+                           
                         },
                         {
                             icon: '📚',
                             title: 'Class & Subject Management',
                             desc: 'Create classes, assign teachers, map subjects efficiently.',
-                            gradient: 'from-green-500 via-teal-500 to-cyan-500',
-                            glowColor: 'green-500',
+                          
                         },
                         {
                             icon: '💳',
                             title: 'Smart Fee Management',
                             desc: 'Real-time dues tracking, UPI payments, instant receipts.',
-                            gradient: 'from-orange-500 via-red-500 to-pink-500',
-                            glowColor: 'orange-500',
+                          
                         },
                         {
                             icon: '🆔',
                             title: 'ID & Admit Cards',
                             desc: 'Generate and print student cards instantly.',
-                            gradient:
-                                'from-purple-500 via-indigo-500 to-blue-500',
-                            glowColor: 'purple-500',
+                            
                         },
                         {
                             icon: '📅',
                             title: 'Exam Timetables',
                             desc: 'Easy creation and sharing of examination schedules.',
-                            gradient:
-                                'from-teal-500 via-green-500 to-emerald-500',
-                            glowColor: 'teal-500',
+                           
                         },
                         {
                             icon: '🔐',
                             title: 'Role-Based Access',
                             desc: 'Admin, student, and staff login portals with secure access.',
-                            gradient:
-                                'from-rose-500 via-pink-500 to-purple-500',
-                            glowColor: 'rose-500',
+                            
                         },
                     ].map((feature, index) => (
                         <div
@@ -356,11 +341,11 @@ function page() {
                         >
                             {/* Outer glow effect */}
                             <div
-                                className={`common absolute -inset-1 bg-gradient-to-r ${feature.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-75 transition-all duration-1000 group-hover:duration-200 animate-pulse`}
+                                className={`common absolute -inset-1 bg-gradient-to-r rounded-3xl blur-xl opacity-0 group-hover:opacity-75 transition-all duration-1000 group-hover:duration-200 animate-pulse`}
                             />
 
                             {/* Main card */}
-                            <div className="common relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border border-white/20 dark:border-gray-700/50 p-8 rounded-3xl shadow-2xl transition-all duration-700 transform group-hover:-translate-y-4 group-hover:scale-105 overflow-hidden">
+                            <div className="common relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border border-white/20 dark:border-gray-700/50 p-8 rounded-3xl shadow-1xl transition-all duration-700 transform group-hover:-translate-y-4 group-hover:scale-105 overflow-hidden">
                                 {/* Animated background particles */}
                                 <div className="common absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                     <div className="common absolute top-4 left-4 w-2 h-2 bg-white/40 rounded-full animate-ping" />
@@ -444,7 +429,7 @@ function page() {
                     <div className="common grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-green-200 transition-all duration-500 group hover:scale-110 hover:ring-4 hover:ring-green-300 hover:-translate-y-2 hover:bg-gradient-to-br hover:from-green-50 hover:to-white relative overflow-hidden">
                             <div className="common absolute inset-0 bg-gradient-to-r from-green-400/10 to-green-600/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
-                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-green-400 to-green-600 text-white rounded-full text-4xl transition-all duration-700 group-hover:rotate-[360deg] group-hover:scale-125 shadow-xl group-hover:shadow-2xl group-hover:bg-gradient-to-tr group-hover:from-green-500 group-hover:to-green-700 animate-bounce hover:animate-none relative z-10">
+                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-green-400 to-green-600 text-white rounded-full text-4xl transition-all duration-700  ">
                                 💰
                             </div>
                             <h3 className="common text-lg font-bold text-gray-800 text-center mb-2 group-hover:text-green-700 transition-colors duration-300 relative z-10 group-hover:animate-pulse">
@@ -459,7 +444,7 @@ function page() {
 
                         <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-blue-200 transition-all duration-500 group hover:scale-110 hover:ring-4 hover:ring-blue-300 hover:-translate-y-2 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white relative overflow-hidden">
                             <div className="common absolute inset-0 bg-gradient-to-r from-blue-400/10 to-blue-600/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
-                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-blue-400 to-blue-600 text-white rounded-full text-4xl transition-all duration-700 group-hover:rotate-[360deg] group-hover:scale-125 shadow-xl group-hover:shadow-2xl group-hover:bg-gradient-to-tr group-hover:from-blue-500 group-hover:to-blue-700 animate-pulse hover:animate-bounce relative z-10">
+                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-blue-400 to-blue-600 text-white rounded-full text-4xl transition-all duration-700  relative z-10">
                                 📱
                             </div>
                             <h3 className="common text-lg font-bold text-gray-800 text-center mb-2 group-hover:text-blue-700 transition-colors duration-300 relative z-10 group-hover:animate-pulse">
@@ -474,7 +459,7 @@ function page() {
                         <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-purple-200 transition-all duration-500 group hover:scale-110 hover:ring-4 hover:ring-purple-300 hover:-translate-y-2 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white relative overflow-hidden">
                             <div className="common absolute inset-0 bg-gradient-to-r from-purple-400/10 to-purple-600/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
                             <div
-                                className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-purple-400 to-purple-600 text-white rounded-full text-4xl transition-all duration-700 group-hover:rotate-[360deg] group-hover:scale-125 shadow-xl group-hover:shadow-2xl group-hover:bg-gradient-to-tr group-hover:from-purple-500 group-hover:to-purple-700 animate-spin hover:animate-bounce relative z-10"
+                                className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-purple-400 to-purple-600 text-white rounded-full text-4xl transition-all duration-700  z-10"
                                 style={{ animationDuration: '3s' }}
                             >
                                 ⚡
@@ -490,7 +475,7 @@ function page() {
 
                         <div className="common bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-orange-200 transition-all duration-500 group hover:scale-110 hover:ring-4 hover:ring-orange-300 hover:-translate-y-2 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white relative overflow-hidden">
                             <div className="common absolute inset-0 bg-gradient-to-r from-orange-400/10 to-orange-600/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
-                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-full text-4xl transition-all duration-700 group-hover:rotate-[360deg] group-hover:scale-125 shadow-xl group-hover:shadow-2xl group-hover:bg-gradient-to-tr group-hover:from-orange-500 group-hover:to-orange-700 animate-pulse hover:animate-bounce relative z-10">
+                            <div className="common w-20 h-20 mx-auto mb-5 flex items-center justify-center bg-gradient-to-br from-orange-400 to-orange-600 text-white rounded-full text-4xl transition-all duration-700 relative z-10">
                                 🇮🇳
                             </div>
                             <h3 className="common text-lg font-bold text-gray-800 text-center mb-2 group-hover:text-orange-700 transition-colors duration-300 relative z-10 group-hover:animate-pulse">
@@ -783,7 +768,7 @@ function page() {
                                 key={idx}
                                 className="group bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl transition-all duration-500 hover:shadow-purple-500/20 hover:border-purple-400/30 hover:from-white/10 hover:to-white/15 hover:-translate-y-2 hover:scale-[1.02]"
                             >
-                                <summary className="font-bold text-xl text-white cursor-pointer flex items-center justify-between p-8 list-none">
+                                <summary className="font-bold text-xl text-white cursor-pointer flex items-center justify-between p-4 list-none">
                                     <span className="flex items-center gap-4">
                                         <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold text-sm">
                                             {idx + 1}
@@ -829,10 +814,16 @@ function page() {
                             Select Login Type
                         </h2>
                         <div className="common flex flex-col gap-4">
-                            <button className="common bg-indigo-600 text-white py-3 rounded-xl hover:bg-indigo-700 transition">
+                            <button
+                                className="common bg-indigo-600 text-white py-3 rounded-xl hover:bg-indigo-700 transition"
+                                onClick={handleParentLogin}
+                            >
                                 👨‍👩‍👧 Login as Parent
                             </button>
-                            <button className="common bg-purple-600 text-white py-3 rounded-xl hover:bg-purple-700 transition">
+                            <button
+                                className="common bg-purple-600 text-white py-3 rounded-xl hover:bg-purple-700 transition"
+                                onClick={handleAdminLogin}
+                            >
                                 🧑‍💼 Login as Admin
                             </button>
                         </div>
@@ -880,13 +871,61 @@ function page() {
                         href="#demo"
                         className="common inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition duration-300"
                     >
-                        🎓 Schedule a Call
+                         Schedule a Call
                     </a>
                 </div>
             </section>
 
             {/* Footer */}
-            <footer className="common bg-gray-50 text-center py-6 text-sm text-gray-500 border-t border-gray-200">
+                <footer className="bg-gray-900 text-gray-100 px-6 py-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Logo & Description */}
+        <div>
+          <h2 className="text-2xl font-bold">MySchoolERP</h2>
+          <p className="mt-2 text-sm text-gray-400">
+            A complete School Management Solution for modern educational institutions.
+          </p>
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h3 className="text-xl font-semibold mb-3">Quick Links</h3>
+          <ul className="space-y-2 text-sm">
+            <li><Link href="/features" className="hover:underline">Features</Link></li>
+            <li><Link href="/pricing" className="hover:underline">Pricing</Link></li>
+            <li><Link href="/about" className="hover:underline">About Us</Link></li>
+            <li><Link href="/contact" className="hover:underline">Contact</Link></li>
+          </ul>
+        </div>
+
+        {/* Contact & Social */}
+        <div>
+          <h3 className="text-xl font-semibold mb-3">Contact Us</h3>
+          <p className="text-sm text-gray-400 mb-2">Email: support@myschoolerp.com</p>
+          <div className="flex space-x-4 mt-4">
+            <a href="mailto:support@myschoolerp.com" aria-label="Email">
+              <Mail className="w-5 h-5 hover:text-white" />
+            </a>
+            <a href="#" aria-label="Facebook">
+              <Facebook className="w-5 h-5 hover:text-white" />
+            </a>
+            <a href="#" aria-label="Twitter">
+              <Twitter className="w-5 h-5 hover:text-white" />
+            </a>
+            <a href="#" aria-label="Instagram">
+              <Instagram className="w-5 h-5 hover:text-white" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="mt-10 text-center text-sm text-gray-500 border-t border-gray-700 pt-4">
+        © {new Date().getFullYear()} Edugits. All rights reserved by ThunderGits Consultacy Services.
+      </div>
+    </footer>
+
+            {/* <footer className="common bg-gray-50 text-center py-6 text-sm text-gray-500 border-t border-gray-200">
                 <p>
                     &copy; 2025{' '}
                     <span className="common font-semibold text-indigo-600">
@@ -904,7 +943,7 @@ function page() {
                     </a>
                     .
                 </p>
-            </footer>
+            </footer> */}
         </div>
     )
 }
