@@ -5,8 +5,52 @@ import AOS from 'aos'
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram, Mail } from 'lucide-react';
 import 'aos/dist/aos.css'
+import { RiTeamLine, RiCustomerService2Line, RiRefreshLine, RiCheckLine } from 'react-icons/ri';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { IoMenuSharp } from 'react-icons/io5'
+import PricingCalculator from './PricingCalculator';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
 function page() {
+    const schoolPlans = [
+        {
+            title: 'Monthly Plan',
+            price: '₹5 / student',
+            desc: 'Pay every month. Ideal for small schools or trials.',
+            details: [
+                '₹5 per student per month',
+                '₹2000 one-time installation fee (mandatory)',
+                'Optional: ₹5000 for website setup',
+                'Optional: ₹10/student for data upload',
+            ],
+            featured: false,
+        },
+        {
+            title: 'Yearly Plan (< 250 students)',
+            price: '₹5000 / year',
+            desc: 'Flat rate for schools with under 250 students.',
+            details: [
+                'Flat ₹5000/year if under 250 students',
+                '₹2000 one-time installation fee (mandatory)',
+                'Optional: ₹5000 for website setup',
+                'Optional: ₹10/student for data upload',
+            ],
+            featured: true,
+        },
+        {
+            title: 'Yearly Plan (250+ students)',
+            price: '15% OFF',
+            desc: 'Discounted pricing for larger schools.',
+            details: [
+                '15% discount on ₹(No. of students × 5 × 12)',
+                '₹2000 one-time installation fee (mandatory)',
+                'Optional: ₹5000 for website setup',
+                'Optional: ₹10/student for data upload',
+            ],
+            featured: false,
+        },
+    ];
     const [activeSection, setActiveSection] = useState('') // Track the active section
     const [showModal, setShowModal] = useState(false)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -62,102 +106,7 @@ function page() {
     return (
         <div className="common font-sans text-gray-800 bg-white">
             {/* Header */}
-            <header className="common sticky top-0 z-50 bg-white/60 backdrop-blur-lg border-b border-white/30 shadow-md transition-all duration-300">
-                <nav className="common max-w-7xl mx-auto flex justify-between items-center px-4 py-3 sm:px-6 lg:px-8 relative">
-                    {/* Logo */}
-                    <h1 className="common text-2xl font-extrabold text-indigo-600 tracking-tight">
-                        edugits
-                    </h1>
-
-                    {/* Desktop Navigation */}
-                    <ul className="common hidden md:flex space-x-6 font-medium text-sm">
-                        {navLinks.map((link) => (
-                            <li key={link.id} className="common relative group">
-                                <a
-                                    href={`#${link.id}`}
-                                    className={`px-2 py-1 transition-colors duration-300 ${activeSection === link.id
-                                        ? 'text-indigo-600 font-semibold'
-                                        : 'text-gray-800'
-                                        } hover:text-indigo-600`}
-                                >
-                                    {link.label}
-                                </a>
-                                <span
-                                    className={`absolute left-1/2 -bottom-1.5 w-0 h-[2px] bg-indigo-500 rounded-full group-hover:w-3/5 transition-all duration-300 transform -translate-x-1/2 ${activeSection === link.id ? 'w-3/5' : ''
-                                        }`}
-                                ></span>
-                            </li>
-                        ))}
-                    </ul>
-
-                    {/* Desktop CTA Buttons */}
-                    <div className="common hidden md:flex items-center space-x-4">
-                        <a
-                            href="#demo"
-                            className="common bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:shadow-xl transition duration-300 hover:scale-105"
-                        >
-                            Book a Demo
-                        </a>
-                        <button
-                            onClick={() => setShowModal(true)}
-                            className="common bg-white text-indigo-600 border border-indigo-600 px-5 py-2 rounded-lg font-semibold hover:bg-indigo-50 transition hover:scale-105"
-                        >
-                            Login
-                        </button>
-                    </div>
-
-                    {/* Hamburger Icon (Mobile only) */}
-                    <button
-                        className="common md:hidden text-indigo-600 focus:outline-none"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    >
-                        {mobileMenuOpen ? (
-                            <IoMenuSharp className="common h-6 w-6" />
-                        ) : (
-                            <IoMenuSharp className="common h-6 w-6" />
-                        )}
-                    </button>
-
-                    {/* Mobile Menu Centered */}
-                    {mobileMenuOpen && (
-                        <div className="common absolute top-full left-0 right-0 bg-white z-40 w-full shadow-lg md:hidden border-t border-gray-200">
-                            <ul className="common flex flex-col items-center py-6 space-y-4 text-center">
-                                {navLinks.map((link) => (
-                                    <li key={link.id}>
-                                        <a
-                                            href={`#${link.id}`}
-                                            onClick={() =>
-                                                setMobileMenuOpen(false)
-                                            }
-                                            className="common block text-gray-800 hover:text-indigo-600 font-medium text-lg transition"
-                                        >
-                                            {link.label}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                            <div className="common flex flex-col items-center space-y-3 px-6 pb-6">
-                                <a
-                                    href="#demo"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="common bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold shadow-md text-center"
-                                >
-                                    🎓 Book a Demo
-                                </a>
-                                <button
-                                    onClick={() => {
-                                        setMobileMenuOpen(false)
-                                        setShowModal(true)
-                                    }}
-                                    className="common bg-white text-indigo-600 border border-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-indigo-50 transition"
-                                >
-                                    🔐 Login
-                                </button>
-                            </div>
-                        </div>
-                    )}
-                </nav>
-            </header>
+       <Navbar></Navbar>
 
             {/* Hero */}
             <section className="relative pt-32 lg:pt-36">
@@ -236,7 +185,7 @@ function page() {
         transition-all duration-300 hover:scale-[1.015] hover:shadow-[0_40px_90px_rgba(0,0,0,0.12)]"
                     >
                         <div className="common flex items-center gap-4 mb-6">
-                            
+
                             <h3 className="common text-3xl font-bold text-red-500">
                                 The Problem
                             </h3>
@@ -255,7 +204,7 @@ function page() {
         transition-all duration-300 hover:scale-[1.015] hover:shadow-[0_40px_90px_rgba(0,0,0,0.12)]"
                     >
                         <div className="common flex items-center gap-4 mb-6">
-                           
+
                             <h3 className="common text-3xl font-bold text-indigo-600">
                                 Our Solution
                             </h3>
@@ -283,7 +232,7 @@ function page() {
                 <div className="common absolute top-0 left-0 w-full h-20 bg-white/10 dark:bg-white/5 blur-sm z-10 pointer-events-none" />
 
 
-              <div className="common relative z-10 text-center max-w-3xl mx-auto mb-20">
+                <div className="common relative z-10 text-center max-w-3xl mx-auto mb-20">
                     <h2 className="common text-5xl font-extrabold tracking-tight text-gray-900 mb-4 leading-tight">
                         Key Features
                     </h2>
@@ -299,38 +248,38 @@ function page() {
                             icon: '👨‍🎓',
                             title: 'Student Management',
                             desc: 'Add, edit, filter, import/export student records with ease.',
-                           
-                           
+
+
                         },
                         {
                             icon: '📚',
                             title: 'Class & Subject Management',
                             desc: 'Create classes, assign teachers, map subjects efficiently.',
-                          
+
                         },
                         {
                             icon: '💳',
                             title: 'Smart Fee Management',
                             desc: 'Real-time dues tracking, UPI payments, instant receipts.',
-                          
+
                         },
                         {
                             icon: '🆔',
                             title: 'ID & Admit Cards',
                             desc: 'Generate and print student cards instantly.',
-                            
+
                         },
                         {
                             icon: '📅',
                             title: 'Exam Timetables',
                             desc: 'Easy creation and sharing of examination schedules.',
-                           
+
                         },
                         {
                             icon: '🔐',
                             title: 'Role-Based Access',
                             desc: 'Admin, student, and staff login portals with secure access.',
-                            
+
                         },
                     ].map((feature, index) => (
                         <div
@@ -356,7 +305,7 @@ function page() {
                                 {/* Icon container with enhanced animations */}
                                 <div className="common relative mb-6">
                                     <div
-                                        className={`common w-20 h-20 mx-auto flex items-center justify-center rounded-2xl bg-gradient-to-tr ${feature.gradient} shadow-2xl transition-all duration-500 group-hover:shadow-3xl group-hover:rotate-6 group-hover:scale-110`}
+                                        className={`common w-20 h-20 mx-auto flex items-center justify-center rounded-2xl bg-gradient-to-tr shadow-2xl transition-all duration-500 group-hover:shadow-3xl group-hover:rotate-6 group-hover:scale-110`}
                                     >
                                         <span className="common text-4xl z-10 group-hover:scale-125 transition-transform duration-300">
                                             {feature.icon}
@@ -366,7 +315,7 @@ function page() {
 
                                     {/* Floating ring animation */}
                                     <div
-                                        className={`common absolute inset-0 w-20 h-20 mx-auto rounded-2xl border-2 border-${feature.glowColor}/30 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-700 animate-pulse`}
+                                        className={`common absolute inset-0 w-20 h-20 mx-auto rounded-2xl border-2  opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-700 animate-pulse`}
                                     />
                                 </div>
 
@@ -601,89 +550,53 @@ function page() {
             </section> */}
 
             {/* Pricing */}
-            {/* <section className="common relative py-24 bg-gray-50 dark:bg-gray-950">
-                <div className="common text-center mb-16">
-                    <h2 className="common text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
-                        Choose Your Power-Up
-                    </h2>
-                    <p className="common mt-4 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-                        Plans built for every dev level. Start light, go beast
-                        mode anytime.
-                    </p>
-                </div>
+            <section className="common relative py-24 bg-gray-50 dark:bg-gray-950">
+                <section className="common py-24 bg-white dark:bg-gray-900">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
+                            School Plan Options
+                        </h2>
+                        <p className="mt-4 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+                            Compare plans based on your student strength and billing preference.
+                        </p>
+                    </div>
 
-                <div className="common relative grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-6">
-                    {[
-                        {
-                            title: 'Solo Hacker',
-                            price: '$19',
-                            desc: 'Perfect for indie devs & portfolio projects.',
-                            team: '1 dev',
-                            support: 'Basic support',
-                            updates: '6 months',
-                            featured: false,
-                        },
-                        {
-                            title: 'Team Turbo',
-                            price: '$89',
-                            desc: 'Best for teams shipping fast with fire.',
-                            team: 'Up to 10 devs',
-                            support: 'Priority support',
-                            updates: '12 months',
-                            featured: true,
-                        },
-                        {
-                            title: 'Enterprise Godmode',
-                            price: '$499',
-                            desc: 'Tailored for enterprise dominance.',
-                            team: '100+ devs',
-                            support: 'Dedicated manager',
-                            updates: 'Lifetime',
-                            featured: false,
-                        },
-                    ].map((plan) => (
-                        <div
-                            key={plan.title}
-                            className={`relative group max-w-sm mx-auto min-h-[380px] rounded-2xl p-6 md:p-8 transition-all duration-300 border dark:border-gray-700 bg-white/60 dark:bg-gray-800/50 backdrop-blur-xl hover:shadow-2xl hover:scale-[1.035] hover:z-10 overflow-hidden`}
-                        >
-                            
-                            <div className="common absolute inset-0 rounded-2xl bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none blur-xl z-0"></div>
-
-                            {plan.featured && (
-                                <div className="common absolute top-4 right-4 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow-md z-10">
-                                    Most Popular
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-6">
+                        {schoolPlans.map((plan) => (
+                            <div
+                                key={plan.title}
+                                className={`relative group max-w-sm mx-auto min-h-[380px] rounded-2xl p-6 md:p-8 transition-all duration-300 border dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-xl hover:scale-[1.035] hover:z-10`}
+                            >
+                                {plan.featured && (
+                                    <div className="absolute top-2 right-4 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow-md z-10">
+                                        Recommended
+                                    </div>
+                                )}
+                                <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                                    {plan.title}
+                                </h3>
+                                <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                                    {plan.desc}
+                                </p>
+                                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4">
+                                    {plan.price}
                                 </div>
-                            )}
-                            <h3 className="common text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white mb-2 relative z-10">
-                                {plan.title}
-                            </h3>
-                            <p className="common text-sm text-gray-500 dark:text-gray-400 mb-4 relative z-10">
-                                {plan.desc}
-                            </p>
-                            <div className="common text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 relative z-10">
-                                {plan.price}
-                                <span className="common text-base font-medium text-gray-500 dark:text-gray-400">
-                                    /mo
-                                </span>
+                                <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    {plan.details.map((item, idx) => (
+                                        <li key={idx} className="flex items-start gap-2">
+                                            <RiCheckLine className="text-green-500 mt-1" />
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
-                            <ul className="common space-y-1 text-sm text-gray-700 dark:text-gray-300 mb-6 relative z-10">
-                                <li>
-                                    👨‍💻 Team size: <strong>{plan.team}</strong>
-                                </li>
-                                <li>
-                                    🛠 Support: <strong>{plan.support}</strong>
-                                </li>
-                                <li>
-                                    🔄 Updates: <strong>{plan.updates}</strong>
-                                </li>
-                            </ul>
-                            <button className="common relative z-10 w-full py-2 rounded-xl text-sm font-semibold transition-colors bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
-                                Get {plan.title}
-                            </button>
-                        </div>
-                    ))}
-                </div>
-            </section> */}
+                        ))}
+                    </div>
+                </section>
+                <PricingCalculator />
+
+
+            </section>
 
             {/* FAQ */}
             <section
@@ -755,7 +668,7 @@ function page() {
                                 answer: 'ThunderSchool runs on a cloud-first architecture for real-time access from anywhere. The desktop app includes limited offline functionality and syncs data when reconnected.',
                             },
                             {
-                                question: 'What kind of support do you offer?',
+                                question: 'What support do you offer?',
                                 answer: 'We provide full onboarding, live training, 24/7 customer support, regular system updates, and dedicated account management — ensuring your staff is always confident using the system.',
                             },
                             {
@@ -766,30 +679,28 @@ function page() {
                         ].map((item, idx) => (
                             <details
                                 key={idx}
-                                className="group bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl transition-all duration-500 hover:shadow-purple-500/20 hover:border-purple-400/30 hover:from-white/10 hover:to-white/15 hover:-translate-y-2 hover:scale-[1.02]"
+                                className="group bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-2xl sm:rounded-3xl shadow-2xl transition-all duration-500 hover:shadow-purple-500/20 hover:border-purple-400/30 hover:from-white/10 hover:to-white/15 hover:-translate-y-1 hover:scale-[1.01]"
                             >
-                                <summary className="font-bold text-xl text-white cursor-pointer flex items-center justify-between p-4 list-none">
+                                <summary className="font-semibold sm:font-bold text-base sm:text-xl text-white cursor-pointer flex items-center justify-between p-4 list-none">
                                     <span className="flex items-center gap-4">
-                                        <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold text-sm">
-                                            {idx + 1}
-                                        </div>
                                         <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
                                             {item.question}
                                         </span>
                                     </span>
                                     <div className="flex items-center gap-3">
-                                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center border border-white/20 group-hover:border-purple-400/40 transition-all duration-300">
-                                            <span className="text-2xl text-white/80 transition-transform duration-500 group-open:rotate-180 group-hover:text-purple-300">
-                                                ▼
+                                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl sm:rounded-2xl flex items-center justify-center border border-white/20 group-hover:border-purple-400/40 transition-all duration-300">
+                                            <span className="text-xl sm:text-2xl text-white/80 transition-transform duration-500 group-open:rotate-180 group-hover:text-purple-300">
+                                                <FiChevronDown className="text-xl sm:text-2xl text-white/80 transition-transform duration-500 group-open:hidden group-hover:text-purple-300" />
+                                                <FiChevronUp className="hidden group-open:block text-xl sm:text-2xl text-white/80 transition-transform duration-500 group-hover:text-purple-300" />
                                             </span>
                                         </div>
                                     </div>
                                 </summary>
 
-                                <div className="px-8 pb-8">
-                                    <div className="ml-12 pl-4 border-l-2 border-gradient-to-b from-blue-400/50 to-purple-400/50">
-                                        <div className="bg-gradient-to-br from-blue-950/30 to-purple-950/30 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                                            <p className="text-gray-200 leading-relaxed text-lg font-medium">
+                                <div className="px-4 sm:px-8 pb-6 sm:pb-8">
+                                    <div className="ml-4 sm:ml-12 pl-2 sm:pl-4 border-l-2 border-gradient-to-b from-blue-400/50 to-purple-400/50">
+                                        <div className="bg-gradient-to-br from-blue-950/30 to-purple-950/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/10">
+                                            <p className="text-sm sm:text-base text-gray-200 leading-relaxed font-medium">
                                                 {item.answer}
                                             </p>
                                         </div>
@@ -871,60 +782,13 @@ function page() {
                         href="#demo"
                         className="common inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition duration-300"
                     >
-                         Schedule a Call
+                        Schedule a Call
                     </a>
                 </div>
             </section>
 
             {/* Footer */}
-                <footer className="bg-gray-900 text-gray-100 px-6 py-10">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Logo & Description */}
-        <div>
-          <h2 className="text-2xl font-bold">MySchoolERP</h2>
-          <p className="mt-2 text-sm text-gray-400">
-            A complete School Management Solution for modern educational institutions.
-          </p>
-        </div>
-
-        {/* Quick Links */}
-        <div>
-          <h3 className="text-xl font-semibold mb-3">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
-            <li><Link href="/features" className="hover:underline">Features</Link></li>
-            <li><Link href="/pricing" className="hover:underline">Pricing</Link></li>
-            <li><Link href="/about" className="hover:underline">About Us</Link></li>
-            <li><Link href="/contact" className="hover:underline">Contact</Link></li>
-          </ul>
-        </div>
-
-        {/* Contact & Social */}
-        <div>
-          <h3 className="text-xl font-semibold mb-3">Contact Us</h3>
-          <p className="text-sm text-gray-400 mb-2">Email: support@myschoolerp.com</p>
-          <div className="flex space-x-4 mt-4">
-            <a href="mailto:support@myschoolerp.com" aria-label="Email">
-              <Mail className="w-5 h-5 hover:text-white" />
-            </a>
-            <a href="#" aria-label="Facebook">
-              <Facebook className="w-5 h-5 hover:text-white" />
-            </a>
-            <a href="#" aria-label="Twitter">
-              <Twitter className="w-5 h-5 hover:text-white" />
-            </a>
-            <a href="#" aria-label="Instagram">
-              <Instagram className="w-5 h-5 hover:text-white" />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="mt-10 text-center text-sm text-gray-500 border-t border-gray-700 pt-4">
-        © {new Date().getFullYear()} Edugits. All rights reserved by ThunderGits Consultacy Services.
-      </div>
-    </footer>
-
+ <Footer></Footer>
             {/* <footer className="common bg-gray-50 text-center py-6 text-sm text-gray-500 border-t border-gray-200">
                 <p>
                     &copy; 2025{' '}
