@@ -7,10 +7,10 @@ export default function PricingCalculator() {
   const [uploadData, setUploadData] = useState(false);
   const [websiteOpt, setWebsiteOpt] = useState(false);
 
-  const baseMonthly = useMemo(() => students * 5, [students]);
+  const baseMonthly = useMemo(() => students * 2, [students]);
   const baseYearly = useMemo(() => {
     if (students < 250) return 5000;
-    const annual = students * 5 * 12;
+    const annual = students * 2 * 12;
     return Math.round(annual * 0.85);
   }, [students]);
 

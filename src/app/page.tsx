@@ -16,34 +16,23 @@ function page() {
     const schoolPlans = [
         {
             title: 'Monthly Plan',
-            price: '₹5 / student',
+            price: '₹2 / student',
             desc: 'Pay every month. Ideal for small schools or trials.',
             details: [
-                '₹5 per student per month',
+                '₹2 per student per month',
                 '₹2000 one-time installation fee (mandatory)',
                 'Optional: ₹5000 for website setup',
                 'Optional: ₹10/student for data upload',
             ],
             featured: false,
         },
-        {
-            title: 'Yearly Plan (< 250 students)',
-            price: '₹5000 / year',
-            desc: 'Flat rate for schools with under 250 students.',
-            details: [
-                'Flat ₹5000/year if under 250 students',
-                '₹2000 one-time installation fee (mandatory)',
-                'Optional: ₹5000 for website setup',
-                'Optional: ₹10/student for data upload',
-            ],
-            featured: true,
-        },
+
         {
             title: 'Yearly Plan (250+ students)',
-            price: '15% OFF',
+            price: '₹2 / student (15% OFF)',
             desc: 'Discounted pricing for larger schools.',
             details: [
-                '15% discount on ₹(No. of students × 5 × 12)',
+                '15% discount on ₹(No. of students × 2 × 12)',
                 '₹2000 one-time installation fee (mandatory)',
                 'Optional: ₹5000 for website setup',
                 'Optional: ₹10/student for data upload',
@@ -106,7 +95,7 @@ function page() {
     return (
         <div className="common font-sans text-gray-800 bg-white">
             {/* Header */}
-       <Navbar></Navbar>
+            <Navbar></Navbar>
 
             {/* Hero */}
             <section className="relative pt-32 lg:pt-36">
@@ -788,7 +777,7 @@ function page() {
             </section>
 
             {/* Footer */}
- <Footer></Footer>
+            <Footer></Footer>
             {/* <footer className="common bg-gray-50 text-center py-6 text-sm text-gray-500 border-t border-gray-200">
                 <p>
                     &copy; 2025{' '}
