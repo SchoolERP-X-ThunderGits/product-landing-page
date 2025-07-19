@@ -9,10 +9,10 @@ export default function PricingCalculator() {
 
   const baseMonthly = useMemo(() => students * 2, [students]);
   const baseYearly = useMemo(() => {
-    if (students < 250) return 5000;
     const annual = students * 2 * 12;
     return Math.round(annual * 0.85);
   }, [students]);
+
 
   const installationFee = 2000;
   const uploadFee = uploadData ? students * 10 : 0;
