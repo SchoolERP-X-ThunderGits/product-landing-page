@@ -1,5 +1,6 @@
 import '@/assets/styles/app.css'
 import { ReactNode } from 'react'
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export const metadata = {
   title: 'edugits | Smart School ERP',

@@ -1,11 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
-import { IoMenuSharp } from 'react-icons/io5';
+import React, { useState, useEffect } from 'react';
+import { IoMenuSharp, IoCloseSharp } from 'react-icons/io5';
+import { FiMail, FiPhone, FiUser, FiMessageSquare, FiSend } from 'react-icons/fi';
 import { createPortal } from 'react-dom';
 
 const navLinks = [
+    { label: 'Home', id: 'hero' },
     { label: 'Features', id: 'features' },
+    { label: 'Pricing', id: 'pricing' },
     { label: 'Demo', id: 'demo' },
     { label: 'FAQ', id: 'faq' },
     { label: 'Contact', id: 'contact' },
@@ -14,11 +17,21 @@ const navLinks = [
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const [form, setForm] = useState({ name: '', mobile: '', email: '', message: '' });
     const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // eslint-disable-next-line
+    const handleChange = (e: any) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
@@ -101,170 +114,281 @@ export default function Navbar() {
     };
 
     return (
-        <header className="common sticky top-0 z-50 bg-white/60 backdrop-blur-lg border-b border-white/30 shadow-md transition-all duration-300">
-            <nav className="common max-w-7xl mx-auto flex justify-between items-center px-4 py-3 sm:px-6 lg:px-8 relative">
-                <h1 className="common text-2xl font-extrabold text-indigo-600 tracking-tight">
-                    edugits
-                </h1>
-
-                <ul className="common hidden md:flex space-x-6 font-medium text-sm">
-                    {navLinks.map(link => (
-                        <li key={link.id} className="common relative group">
-                            <a
-                                href={`/#${link.id}`}
-                                className="px-2 py-1 transition-colors duration-300 hover:text-indigo-600 text-gray-800"
-                            >
-                                {link.label}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-
-                <div className="common hidden md:flex items-center space-x-4">
-                    <button
-                        onClick={() => setShowModal(true)}
-
-                        className="common bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:shadow-xl transition duration-300 hover:scale-105"
-                    >
-                        Book a Demo
-                    </button>
-                    <button
-
-                        className="common bg-white text-indigo-600 border border-indigo-600 px-5 py-2 rounded-lg font-semibold hover:bg-indigo-50 transition hover:scale-105"
-                    >
-                        Login
-                    </button>
-                </div>
-
-                <button
-                    className="common md:hidden text-indigo-600 focus:outline-none"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                    <IoMenuSharp className="common h-6 w-6" />
-                </button>
-
-                {mobileMenuOpen && (
-                    <div className="common absolute top-full left-0 right-0 bg-white z-40 w-full shadow-lg md:hidden border-t border-gray-200">
-                        <ul className="common flex flex-col items-start py-6 space-y-4 text-left px-6">
-                            {navLinks.map(link => (
-                                <li key={link.id}>
-                                    <a
-                                        href={`#${link.id}`}
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="common block text-gray-800 hover:text-indigo-600 font-medium text-lg transition"
-                                    >
-                                        {link.label}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="common flex flex-col items-start space-y-3 px-6 pb-6">
-                            <a
-                                href="#demo"
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="common bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold shadow-md"
-                            >
-                                🎓 Book a Demo
-                            </a>
-                            <button
-                                onClick={() => {
-                                    setMobileMenuOpen(false);
-                                    setShowModal(true);
-                                }}
-                                className="common bg-white text-indigo-600 border border-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-indigo-50 transition"
-                            >
-                                🔐 Login
-                            </button>
+        <>
+            <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg py-2' : 'bg-transparent py-4'
+                }`}>
+                <nav className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 relative">
+                    <div className="flex items-center">
+                        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                            <span className="text-white font-bold text-xl">EG</span>
                         </div>
+                        <h1 className="text-2xl font-bold text-gray-900">
+                            Edu<span className="text-indigo-600">Gits</span>
+                        </h1>
                     </div>
-                )}
 
-                {/* 🟩 MODAL */}
-                {showModal && createPortal(
-                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
-                        <div className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl p-8">
-                            <button
-                                onClick={() => setShowModal(false)}
-                                className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl font-bold focus:outline-none"
-                                aria-label="Close Inquiry Form"
-                            >
-                                &times;
-                            </button>
-
-                            <h2 className="text-2xl font-semibold text-indigo-700 mb-6 border-b pb-3">📩 Inquiry Form</h2>
-
-                            <div className="space-y-5">
-                                <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                                    <input
-                                        id="name"
-                                        name="name"
-                                        type="text"
-                                        value={form.name}
-                                        onChange={handleChange}
-                                        placeholder="Your full name"
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 mb-1">Mobile</label>
-                                    <input
-                                        id="mobile"
-                                        name="mobile"
-                                        type="text"
-                                        value={form.mobile}
-                                        onChange={handleChange}
-                                        placeholder="e.g. 9876543210"
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                    <input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        value={form.email}
-                                        onChange={handleChange}
-                                        placeholder="you@example.com"
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        value={form.message}
-                                        onChange={handleChange}
-                                        placeholder="Briefly describe your query..."
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-2 h-28 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    />
-                                </div>
-
-                                <button
-                                    onClick={sendInquiry}
-                                    disabled={submitting}
-                                    className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-all duration-200 disabled:opacity-50"
+                    <ul className="hidden md:flex space-x-8 font-medium">
+                        {navLinks.map(link => (
+                            <li key={link.id} className="relative group">
+                                <a
+                                    href={`/#${link.id}`}
+                                    className="px-2 py-1 transition-colors duration-300 hover:text-indigo-600 text-gray-700 group-hover:text-indigo-600"
                                 >
-                                    {submitting ? 'Sending...' : 'Submit Inquiry'}
-                                </button>
+                                    {link.label}
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-600 transition-all duration-300 group-hover:w-full"></span>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
 
-                                {submitted && (
-                                    <div className="text-green-600 text-sm font-medium mt-2 text-center">
-                                        ✅ Inquiry sent successfully! We’ll get back to you shortly.
-                                    </div>
-                                )}
+                    <div className="hidden md:flex items-center space-x-4">
+                        <button
+                            onClick={() => setShowModal(true)}
+                            className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:shadow-xl transition duration-300 hover:scale-105 flex items-center gap-2"
+                        >
+                            <FiSend size={16} />
+                            Book a Demo
+                        </button>
+                        <button
+                            className="bg-white text-indigo-600 border border-indigo-600 px-5 py-2 rounded-lg font-semibold hover:bg-indigo-50 transition hover:scale-105 flex items-center gap-2"
+                        >
+                            <FiUser size={16} />
+                            Login
+                        </button>
+                    </div>
+
+                    <button
+                        className="md:hidden text-gray-700 focus:outline-none"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        {mobileMenuOpen ? (
+                            <IoCloseSharp className="h-8 w-8 text-gray-700" />
+                        ) : (
+                            <IoMenuSharp className="h-8 w-8 text-gray-700" />
+                        )}
+                    </button>
+
+                    {mobileMenuOpen && (
+                        <div className="absolute top-full left-0 right-0 bg-white z-40 w-full shadow-xl md:hidden border-t border-gray-200">
+                            <ul className="flex flex-col items-start py-6 space-y-4 text-left px-6">
+                                {navLinks.map(link => (
+                                    <li key={link.id} className="w-full">
+                                        <a
+                                            href={`#${link.id}`}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="block text-gray-800 hover:text-indigo-600 font-medium text-lg transition w-full py-2 border-b border-gray-100"
+                                        >
+                                            {link.label}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="flex flex-col items-start space-y-3 px-6 pb-6">
+                                <button
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setShowModal(true);
+                                    }}
+                                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md flex items-center justify-center gap-2"
+                                >
+                                    <FiSend size={18} />
+                                    Book a Demo
+                                </button>
+                                <button
+                                    className="w-full bg-white text-indigo-600 border border-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition flex items-center justify-center gap-2"
+                                >
+                                    <FiUser size={18} />
+                                    Login
+                                </button>
                             </div>
                         </div>
-                    </div>,
-                    document.body
-                )}
+                    )}
+                </nav>
+            </header>
 
-            </nav>
-        </header>
+            {/* Modal */}
+            {showModal && createPortal(
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
+                    <div className="relative w-full max-w-2xl bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-2xl overflow-hidden">
+                        <div className="absolute inset-0 bg-[url('https://tailwindui.com/img/beams-pricing.png')] bg-[length:700px] bg-top bg-no-repeat opacity-5"></div>
+                        <div className="relative z-10">
+                            <button
+                                onClick={() => setShowModal(false)}
+                                className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl font-bold focus:outline-none bg-white rounded-full p-1 shadow-md"
+                                aria-label="Close Inquiry Form"
+                            >
+                                <IoCloseSharp className="h-6 w-6" />
+                            </button>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2">
+                                {/* Left Side - Info */}
+                                <div className="bg-gradient-to-br from-indigo-600 to-purple-600 p-8 text-white">
+                                    <div className="mb-6">
+                                        <h2 className="text-2xl font-bold text-white mb-2">Get a Personalized Demo</h2>
+                                        <p className="text-indigo-100">See how ThunderSchool can transform your school administration</p>
+                                    </div>
+
+                                    <div className="space-y-6">
+                                        <div className="flex items-start gap-4">
+                                            <div className="bg-white/20 p-3 rounded-full flex-shrink-0">
+                                                <FiPhone className="h-6 w-6" />
+                                            </div>
+                                            <div>
+                                                <h3 className="font-semibold text-white text-lg mb-1">Call Us</h3>
+                                                <p className="text-indigo-100">+91-7765979725</p>
+                                                <p className="text-indigo-200 text-sm">Mon-Fri, 9AM-6PM IST</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-start gap-4">
+                                            <div className="bg-white/20 p-3 rounded-full flex-shrink-0">
+                                                <FiMail className="h-6 w-6" />
+                                            </div>
+                                            <div>
+                                                <h3 className="font-semibold text-white text-lg mb-1">Email Us</h3>
+                                                <p className="text-indigo-100">info@thunderschool.com</p>
+                                                <p className="text-indigo-200 text-sm">Response within 24 hours</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="mt-8 pt-6 border-t border-indigo-400/30">
+                                            <h4 className="font-bold text-white text-lg mb-3">Why Choose ThunderSchool?</h4>
+                                            <ul className="space-y-2">
+                                                <li className="flex items-center gap-2">
+                                                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+                                                        <div className="w-2 h-2 rounded-full bg-white"></div>
+                                                    </div>
+                                                    <span>Most affordable school ERP in India</span>
+                                                </li>
+                                                <li className="flex items-center gap-2">
+                                                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+                                                        <div className="w-2 h-2 rounded-full bg-white"></div>
+                                                    </div>
+                                                    <span>Web, Mobile & Desktop applications</span>
+                                                </li>
+                                                <li className="flex items-center gap-2">
+                                                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+                                                        <div className="w-2 h-2 rounded-full bg-white"></div>
+                                                    </div>
+                                                    <span>Made for Indian schools</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Right Side - Form */}
+                                <div className="p-8">
+                                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Schedule a Demo</h2>
+                                    <p className="text-gray-600 mb-6">Fill out the form and we&apos;ll contact you shortly</p>
+
+                                    <div className="space-y-5">
+                                        <div className="relative">
+                                            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                            <div className="relative">
+                                                <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                                <input
+                                                    id="name"
+                                                    name="name"
+                                                    type="text"
+                                                    value={form.name}
+                                                    onChange={handleChange}
+                                                    placeholder="Your full name"
+                                                    className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="relative">
+                                            <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 mb-1">Mobile</label>
+                                            <div className="relative">
+                                                <FiPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                                <input
+                                                    id="mobile"
+                                                    name="mobile"
+                                                    type="text"
+                                                    value={form.mobile}
+                                                    onChange={handleChange}
+                                                    placeholder="e.g. 9876543210"
+                                                    className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="relative">
+                                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                            <div className="relative">
+                                                <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                                <input
+                                                    id="email"
+                                                    name="email"
+                                                    type="email"
+                                                    value={form.email}
+                                                    onChange={handleChange}
+                                                    placeholder="you@example.com"
+                                                    className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="relative">
+                                            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                            <div className="relative">
+                                                <FiMessageSquare className="absolute left-3 top-4 text-gray-400" />
+                                                <textarea
+                                                    id="message"
+                                                    name="message"
+                                                    value={form.message}
+                                                    onChange={handleChange}
+                                                    placeholder="Briefly describe your school and requirements..."
+                                                    className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-3 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            onClick={sendInquiry}
+                                            disabled={submitting}
+                                            className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${submitting
+                                                ? 'bg-gray-400 text-white'
+                                                : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700'
+                                                }`}
+                                        >
+                                            {submitting ? (
+                                                <>
+                                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                    </svg>
+                                                    Sending...
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <FiSend size={18} />
+                                                    Submit Inquiry
+                                                </>
+                                            )}
+                                        </button>
+
+                                        {submitted && (
+                                            <div className="bg-green-50 border border-green-200 p-4 rounded-lg text-green-700 text-center">
+                                                <div className="font-bold flex items-center justify-center gap-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                    </svg>
+                                                    Inquiry sent successfully!
+                                                </div>
+                                                <p className="mt-1 text-sm">We&apos;ll get back to you within 24 hours.</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>,
+                document.body
+            )}
+        </>
     );
 }
