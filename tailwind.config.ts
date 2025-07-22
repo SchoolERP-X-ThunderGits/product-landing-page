@@ -83,6 +83,16 @@ const config: Config = {
         'gray-800': 'var(--gray-800)',
         'gray-900': 'var(--gray-900)',
         'gray-950': 'var(--gray-950)',
+        'purple': 'var(--purple)',
+        'violet': 'var(--violet)',
+        'rose': 'var(--rose)',
+        'pink': 'var(--pink)',
+        'cyan': 'var(--cyan)',
+        'sky': 'var(--sky)',
+        'emerald': 'var(--emerald)',
+        'teal': 'var(--teal)',
+        'orange': 'var(--orange)',
+        'indigo': 'var(--indigo)',
       },
       typography: (theme: any) => ({
         DEFAULT: {

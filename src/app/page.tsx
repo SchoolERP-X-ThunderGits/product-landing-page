@@ -6,7 +6,7 @@ import { FiCalendar, FiChevronDown, FiChevronUp, FiMail, FiPhone } from 'react-i
 import PricingCalculator from './PricingCalculator';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import "./style.css"
+import "./landing-page.css"
 
 function page() {
     const schoolPlans = [
@@ -98,7 +98,7 @@ function page() {
             ),
             title: 'Student Management',
             desc: 'Comprehensive student profiles with academic history, attendance, and performance analytics.',
-            color: 'from-blue-500 to-indigo-600'
+            color: 'from-primary to-indigo'
         },
         {
             icon: (
@@ -108,7 +108,7 @@ function page() {
             ),
             title: 'Class & Subject Management',
             desc: 'Create classes, assign teachers, and map subjects with timetable integration.',
-            color: 'from-green-500 to-teal-600'
+            color: 'from-success to-teal'
         },
         {
             icon: (
@@ -118,7 +118,7 @@ function page() {
             ),
             title: 'Fee Management',
             desc: 'Automated fee collection, UPI payments, receipts, and real-time dues tracking.',
-            color: 'from-amber-500 to-orange-600'
+            color: 'from-warning to-orange'
         },
         {
             icon: (
@@ -128,7 +128,7 @@ function page() {
             ),
             title: 'ID & Admit Cards',
             desc: 'Generate and print professional student ID cards and exam admit cards instantly.',
-            color: 'from-purple-500 to-violet-600'
+            color: 'from-purple to-violet'
         },
         {
             icon: (
@@ -138,7 +138,7 @@ function page() {
             ),
             title: 'Exam Scheduling',
             desc: 'Create and manage examination timetables with automatic notifications.',
-            color: 'from-rose-500 to-pink-600'
+            color: 'from-rose to-pink'
         },
         {
             icon: (
@@ -148,7 +148,7 @@ function page() {
             ),
             title: 'Role-Based Access',
             desc: 'Secure portals for admin, teachers, students, and parents with custom permissions.',
-            color: 'from-cyan-500 to-sky-600'
+            color: 'from-cyan to-sky'
         },
     ];
 
@@ -161,7 +161,7 @@ function page() {
             ),
             title: "Most Affordable ERP Globally",
             description: "Save up to 70% on costs compared to international solutions while getting premium features",
-            color: "from-green-500 to-emerald-600"
+            color: "from-success to-emerald"
         },
         {
             icon: (
@@ -171,7 +171,7 @@ function page() {
             ),
             title: "Mobile + Web + PC Apps",
             description: "Access from anywhere - Android, iOS, Web browsers & Windows desktop applications",
-            color: "from-blue-500 to-sky-600"
+            color: "from-primary to-sky"
         },
         {
             icon: (
@@ -181,7 +181,7 @@ function page() {
             ),
             title: "Built on Latest Technologies",
             description: "React, Node.js, AI-powered analytics & cloud infrastructure for future-ready performance",
-            color: "from-purple-500 to-violet-600"
+            color: "from-purple to-violet"
         },
         {
             icon: (
@@ -191,7 +191,7 @@ function page() {
             ),
             title: "Made in India",
             description: "Proudly developed in India with local support, compliance & understanding of Indian education system",
-            color: "from-orange-500 to-amber-600"
+            color: "from-orange to-warning"
         }
     ];
 
