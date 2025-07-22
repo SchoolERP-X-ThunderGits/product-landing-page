@@ -17,7 +17,7 @@ export default function PricingCalculator() {
   const [uploadData, setUploadData] = useState(false);
   const [websiteOpt, setWebsiteOpt] = useState(false);
   const [idCards, setIdCards] = useState(false);
-  const [idCardType, setIdCardType] = useState('basic');
+
   // const [showBreakdown, setShowBreakdown] = useState(true);
 
   const baseMonthly = useMemo(() => students * 2, [students]);
@@ -29,7 +29,7 @@ export default function PricingCalculator() {
   const installationFee = 2000;
   const uploadFee = uploadData ? students * 10 : 0;
   const websiteFee = websiteOpt ? 5000 : 0;
-  const idCardFee = idCards ? (idCardType === 'premium' ? 25 : 10) * students : 0;
+  const idCardFee = idCards ? 1000 : 0;
 
   const core = billing === 'monthly' ? baseMonthly : baseYearly;
   const subtotal = core + installationFee + uploadFee + websiteFee + idCardFee;
@@ -193,7 +193,8 @@ export default function PricingCalculator() {
                     </div>
                     <div className="flex items-center gap-4">
                       <span className={`font-bold ${idCards ? 'text-purple-600' : 'text-gray-500'}`}>
-                        {idCards ? `₹${idCardType === 'premium' ? 25 : 10}/student` : 'Optional'}
+                        ₹1000
+                        {/* {idCards ? `₹${idCardType === 'premium' ? 25 : 10}/student` : 'Optional'} */}
                       </span>
                       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${idCards ? 'bg-purple-600 border-purple-600' : 'border-gray-400'}`}>
                         {idCards && <RiCheckboxCircleFill className="text-white text-lg" />}
@@ -201,7 +202,7 @@ export default function PricingCalculator() {
                     </div>
                   </div>
 
-                  {idCards && (
+                  {/* {idCards && (
                     <div className="ml-12 pl-4 border-l-2 border-purple-200">
                       <label className="block text-gray-700 mb-2">ID Card Type</label>
                       <div className="flex gap-4">
@@ -219,7 +220,7 @@ export default function PricingCalculator() {
                         </button>
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
@@ -266,7 +267,7 @@ export default function PricingCalculator() {
                   )}
                   {idCards && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">ID Cards ({idCardType})</span>
+                      <span className="text-gray-600">ID Cards</span>
                       <span className="font-medium">₹{idCardFee}</span>
                     </div>
                   )}

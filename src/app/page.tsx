@@ -24,8 +24,8 @@ function page() {
         },
 
         {
-            title: 'Yearly Plan (250+ students)',
-            price: '₹2 / student (15% OFF)',
+            title: 'Yearly Plan (15% OFF)',
+            price: '₹2 / student',
             desc: 'Discounted pricing for larger schools.',
             details: [
                 '15% discount on ₹(No. of students × 2 × 12)',
@@ -690,7 +690,7 @@ function page() {
                                             <p className="text-gray-600 mb-6">{plan.desc}</p>
 
                                             <div className={`text-4xl font-extrabold mb-4 ${plan.featured ? "text-indigo-600" : "text-gray-900"}`}>
-                                                {plan.price}
+                                                {plan.price} <span className='text-sm text-gray-600 font-bold'>per month</span>
                                             </div>
 
                                             <div className="h-px bg-gray-200 my-6"></div>
@@ -714,12 +714,12 @@ function page() {
                                             </ul>
                                         </div>
 
-                                        <button className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-300 ${plan.featured
+                                        {/* <button className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-300 ${plan.featured
                                             ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700"
                                             : "bg-gray-100 text-gray-800 hover:bg-gray-200"
                                             }`}>
                                             {plan.featured ? "Get Started" : "Learn More"}
-                                        </button>
+                                        </button> */}
                                     </div>
                                 ))}
                             </div>

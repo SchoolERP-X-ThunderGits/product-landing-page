@@ -223,7 +223,7 @@ export default function Navbar() {
 
                             <div className="grid grid-cols-1 md:grid-cols-2">
                                 {/* Left Side - Info */}
-                                <div className="bg-gradient-to-br from-indigo-600 to-purple-600 p-8 text-white">
+                                <div className="hidden sm:block bg-gradient-to-br from-indigo-600 to-purple-600 p-8 text-white">
                                     <div className="mb-6">
                                         <h2 className="text-2xl font-bold text-white mb-2">Get a Personalized Demo</h2>
                                         <p className="text-indigo-100">See how ThunderSchool can transform your school administration</p>
