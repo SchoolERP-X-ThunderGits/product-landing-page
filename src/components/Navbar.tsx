@@ -24,7 +24,7 @@ export default function Navbar() {
 
 
     const handleAdminLogin = () => {
-        window.location.href = 'https://vidya360.thundergits.com/admin';
+        window.location.href = 'https://tg-panel-edugits.thundergits.com/admin';
     };
 
     useEffect(() => {

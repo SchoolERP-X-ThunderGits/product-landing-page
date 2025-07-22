@@ -46,11 +46,11 @@ function page() {
 
     const [mobileMenuOpen] = useState(false)
     const handleParentLogin = () => {
-        window.location.href = 'https://vidya360.thundergits.com/student';
+        window.location.href = 'https://tg-panel-edugits.thundergits.com/student';
     };
 
     const handleAdminLogin = () => {
-        window.location.href = 'https://vidya360.thundergits.com/admin';
+        window.location.href = 'https://tg-panel-edugits.thundergits.com/admin';
     };
 
 
