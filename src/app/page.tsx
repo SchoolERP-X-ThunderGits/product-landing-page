@@ -12,7 +12,7 @@ function page() {
     const schoolPlans = [
         {
             title: 'Monthly Plan',
-            price: '₹2 / student',
+            price: '₹2 / student /month',
             desc: 'Pay every month. Ideal for small schools or trials.',
             details: [
                 '₹2 per student per month',
@@ -25,7 +25,7 @@ function page() {
 
         {
             title: 'Yearly Plan (15% OFF)',
-            price: '₹2 / student',
+            price: '₹2 / student / month',
             desc: 'Discounted pricing for larger schools.',
             details: [
                 '15% discount on ₹(No. of students × 2 × 12)',
@@ -690,7 +690,7 @@ function page() {
                                             <p className="text-gray-600 mb-6">{plan.desc}</p>
 
                                             <div className={`text-4xl font-extrabold mb-4 ${plan.featured ? "text-indigo-600" : "text-gray-900"}`}>
-                                                {plan.price} <span className='text-sm text-gray-600 font-bold'>per month</span>
+                                                {plan.price}
                                             </div>
 
                                             <div className="h-px bg-gray-200 my-6"></div>

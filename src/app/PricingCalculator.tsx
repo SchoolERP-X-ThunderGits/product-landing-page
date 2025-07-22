@@ -47,7 +47,7 @@ export default function PricingCalculator() {
         <div className="absolute -bottom-32 left-20 w-72 h-72 bg-indigo-500/10 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-500"></div>
       </div> */}
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mt-10 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             School ERP Pricing Calculator
