@@ -27,7 +27,8 @@ export default function Footer() {
                         {/* Column 2 */}
                         <ul className="space-y-2 min-w-[140px]">
                             <li><Link href="/terms" className="hover:underline">Terms & Conditions</Link></li>
-                            <li><Link href="/privacy" className="hover:underline">Privacy Policy</Link></li>
+                            <li><Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link></li>
+                            <li><Link href="/refund-policy" className="hover:underline">Refund Policy</Link></li>
                         </ul>
                     </div>
                 </div>

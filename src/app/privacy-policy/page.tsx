@@ -6,8 +6,11 @@ export default function PrivacyPolicy() {
     return (
         <div className="common font-sans text-gray-800 bg-white">
             <Navbar></Navbar>
-            
+
             <div className="text-gray-900 px-4 sm:px-10 py-16 max-w-4xl mx-auto">
+                <br />
+                <br />
+                <br /><br />
                 <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-10">Privacy Policy</h1>
 
                 <p className="mb-6">Last Updated: 13 June 2025</p>

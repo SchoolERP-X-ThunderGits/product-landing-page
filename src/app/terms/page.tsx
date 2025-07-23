@@ -9,6 +9,9 @@ export default function TermsPage() {
         <div className="bg-white text-gray-800">
             <Navbar />
             <div className="max-w-4xl mx-auto px-4 sm:px-8 py-16">
+                <br />
+                <br />
+                <br /><br />
                 <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-10">Terms and Conditions</h1>
 
                 <p className="mb-6">
