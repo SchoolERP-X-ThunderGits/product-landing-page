@@ -196,6 +196,7 @@ export default function Navbar() {
                                     Book a Demo
                                 </button>
                                 <button
+                                    onClick={handleAdminLogin}
                                     className="w-full bg-white text-indigo-600 border border-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition flex items-center justify-center gap-2"
                                 >
                                     <FiUser size={18} />
