@@ -20,9 +20,9 @@ export default function PricingCalculator() {
 
   // const [showBreakdown, setShowBreakdown] = useState(true);
 
-  const baseMonthly = useMemo(() => students * 2, [students]);
+  const baseMonthly = useMemo(() => students * 15, [students]);
   const baseYearly = useMemo(() => {
-    const annual = students * 2 * 12;
+    const annual = students * 15 * 12;
     return Math.round(annual * 0.85);
   }, [students]);
 
@@ -36,7 +36,7 @@ export default function PricingCalculator() {
   const gst = 0; //subtotal * 0.18;
   const total = subtotal + gst;
 
-  const yearlySavings = Math.round((students * 2 * 12) - baseYearly);
+  const yearlySavings = Math.round((students * 15 * 12) - baseYearly);
 
   return (
     <section className="relative py-24 bg-gradient-to-b from-gray-50 to-gray-100">

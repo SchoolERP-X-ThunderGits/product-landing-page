@@ -22,7 +22,7 @@ export default function RefundPolicy() {
                 <h2 className="text-2xl font-semibold text-gray-900 mt-10 mb-4">1. Subscription Charges</h2>
                 <ul className="list-disc pl-6 mb-6 space-y-2">
                     <li>Edugits follows a prepaid subscription model.</li>
-                    <li>Pricing is ₹2 per student per month.</li>
+                    <li>Pricing is ₹15 per student per month.</li>
                     <li>Discounted annual pricing is available as per selected plans.</li>
                     <li>Optional add-ons (such as data upload and website setup) are charged separately.</li>
                 </ul>

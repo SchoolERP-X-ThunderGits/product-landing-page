@@ -12,10 +12,10 @@ function page() {
     const schoolPlans = [
         {
             title: 'Monthly Plan',
-            price: '₹2 / student /month',
+            price: '₹15 / student /month',
             desc: 'Pay every month. Ideal for small schools or trials.',
             details: [
-                '₹2 per student per month',
+                '₹15 per student per month',
                 '₹2000 one-time installation fee (mandatory)',
                 'Optional: ₹5000 for website setup',
                 'Optional: ₹10/student for data upload',
@@ -25,10 +25,10 @@ function page() {
 
         {
             title: 'Yearly Plan (15% OFF)',
-            price: '₹2 / student / month',
+            price: '₹15 / student / month',
             desc: 'Discounted pricing for larger schools.',
             details: [
-                '15% discount on ₹(No. of students × 2 × 12)',
+                '15% discount on ₹(No. of students × 15 × 12)',
                 '₹2000 one-time installation fee (mandatory)',
                 'Optional: ₹5000 for website setup',
                 'Optional: ₹10/student for data upload',
