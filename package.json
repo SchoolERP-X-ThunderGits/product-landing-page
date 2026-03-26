@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "export": "next export",
     "build": "next build",
     "gcp-build": "NODE_OPTIONS='--max-old-space-size=8192' npm run build",
     "start": "next start -H 0.0.0.0 -p 80",
