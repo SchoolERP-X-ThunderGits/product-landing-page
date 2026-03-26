@@ -7,7 +7,7 @@
     "export": "next export",
     "build": "next build",
     "gcp-build": "NODE_OPTIONS='--max-old-space-size=8192' npm run build",
-    "start": "next start",
+    "start": "next start -H 0.0.0.0 -p 80",
     "lint": "next lint",
     "prettier": "npx prettier src --check",
     "prettier:fix": "npm run prettier -- --write"
