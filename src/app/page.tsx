@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import { FiCalendar, FiChevronDown, FiChevronUp, FiMail, FiPhone } from 'react-icons/fi';
+import { FiCalendar, FiChevronDown, FiChevronUp, FiMail, FiPhone, FiStar, FiCheck, FiSmartphone, FiMonitor, FiAlertTriangle, FiX } from 'react-icons/fi';
 import PricingCalculator from './PricingCalculator';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -256,7 +256,7 @@ function page() {
                         <div className="w-full lg:w-1/2 z-10">
                             <div className="mb-6">
                                 <span className="feature-badge text-white text-sm font-semibold px-4 py-2 rounded-full inline-block">
-                                    <i className="fas fa-star mr-2"></i>#1 School ERP in India
+                                    <FiStar className="mr-2" />#1 School ERP in India
                                 </span>
                             </div>
 
@@ -273,7 +273,7 @@ function page() {
                                     <h3 className="font-semibold text-gray-700 mb-2">Get started in seconds</h3>
                                     <div className="form-container bg-white rounded-xl p-1 flex items-center">
                                         <div className="pl-4 pr-2 text-gray-500">
-                                            <i className="fas fa-envelope"></i>
+                                            <FiMail />
                                         </div>
                                         <input type="email" placeholder="your.school@example.com" className="w-full py-4 px-2 outline-none bg-transparent" />
                                         <button className="cta-button text-white font-medium py-4 px-6 rounded-xl">
@@ -285,13 +285,13 @@ function page() {
                                 <div className="flex flex-wrap gap-4 mt-6">
                                     <div className="flex items-center">
                                         <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-2">
-                                            <i className="fas fa-check text-green-600"></i>
+                                            <FiCheck className="text-green-600" />
                                         </div>
                                         <span className="text-gray-600">Free 30-day trial</span>
                                     </div>
                                     <div className="flex items-center">
                                         <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-2">
-                                            <i className="fas fa-check text-blue-600"></i>
+                                            <FiCheck className="text-blue-600" />
                                         </div>
                                         <span className="text-gray-600">No credit card required</span>
                                     </div>
@@ -312,7 +312,7 @@ function page() {
                                 <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg">
                                     <div className="flex items-center">
                                         <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-3">
-                                            <i className="fas fa-mobile-alt text-blue-600 text-xl"></i>
+                                            <FiSmartphone className="text-blue-600 text-xl" />
                                         </div>
                                         <div>
                                             <h4 className="font-semibold">Mobile App</h4>
@@ -324,7 +324,7 @@ function page() {
                                 <div className="absolute -top-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
                                     <div className="flex items-center">
                                         <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mr-3">
-                                            <i className="fas fa-desktop text-green-600 text-xl"></i>
+                                            <FiMonitor className="text-green-600 text-xl" />
                                         </div>
                                         <div>
                                             <h4 className="font-semibold">Desktop App</h4>
@@ -380,7 +380,7 @@ function page() {
 
                         <div className="card problem-card p-8 lg:p-10">
                             <div className="icon-container problem-icon">
-                                <i className="fas fa-exclamation-triangle text-3xl"></i>
+                                <FiAlertTriangle className="text-3xl" />
                             </div>
 
                             <div className="flex items-center gap-4 mb-6">
@@ -399,7 +399,7 @@ function page() {
                                     <li className="flex items-start">
                                         <div className="flex-shrink-0 mt-1 mr-3">
                                             <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center">
-                                                <i className="fas fa-times text-red-500 text-xs"></i>
+                                                <FiX className="text-red-500 text-xs" />
                                             </div>
                                         </div>
                                         <span className="text-gray-600">Time-consuming manual processes for attendance, grading, and reporting</span>
@@ -454,7 +454,7 @@ function page() {
                                     <li className="flex items-start">
                                         <div className="flex-shrink-0 mt-1 mr-3">
                                             <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
-                                                <i className="fas fa-check text-green-500 text-xs"></i>
+                                                <FiCheck className="text-green-500 text-xs" />
                                             </div>
                                         </div>
                                         <span className="text-gray-600"><strong className="text-indigo-600">Unified Platform:</strong> All school operations in one integrated system</span>

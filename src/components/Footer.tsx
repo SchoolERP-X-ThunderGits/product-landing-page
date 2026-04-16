@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Mail, Facebook, Twitter, Instagram } from 'lucide-react';
+import { FiMail as Mail, FiFacebook as Facebook, FiTwitter as Twitter, FiInstagram as Instagram } from 'react-icons/fi';
 
 export default function Footer() {
     return (
